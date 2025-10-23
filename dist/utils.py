@@ -27,6 +27,15 @@ def matrix_of(size, value):
         matrix.append(row)
     return matrix
 
+def matrix(size, creator):
+    matrix = []
+    for i in range(size[0]):
+        row = []
+        for j in range(size[1]):
+            row.append(creator(i, j))
+        matrix.append(row)
+    return matrix
+
 def reverse_direction(d):
     return DIRECTION_REVERSE_MAP[d]
 
@@ -71,3 +80,8 @@ def wait_for_seed(entity, reserve_multiplier):
         # print takes 1 second, it waits like doing a flip
         print("Warning: Cannot afford seed for {}".format(entity))
         # do_a_flip()
+
+def wait_for_harvest():
+    while not can_harvest():
+        # print takes 1 second, it waits like doing a flip
+        print("Wait[H]")

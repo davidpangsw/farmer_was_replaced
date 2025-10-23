@@ -5,7 +5,7 @@ import grass
 import bush
 import tree
 import carrot
-from prototype import PREPARE, TEND
+from utils import wait_for_harvest
 
 G = Entities.Grass
 B = Entities.Bush
@@ -18,37 +18,18 @@ MIN_ITEMS = {
     Items.Carrot:1000,
 }
 
-def create_gbc():
-    inst = {}
+SIZE = "size"
+POLY = "polyculture"
+PATH = "path"
+GBTCS = "matrix of grass, bush, tree, carrot"
 
-    def prepare():
-        if can_harvest():
-            harvest()
-        
-        if get_ground_type() == Grounds.Soil:
-            till()
-    inst[PREPARE] = prepare
+def set_polyculture(inst):
+    w, h = inst[SIZE]
+    entity, pos = get_companion()
+    ci, cj = x - pos[0], y - pos[1]
+    if (0 <= ci and ci < w) and (0 <= cj and cj < h):
+        inst[POLY][i][j] = entity
 
-    def tend():
-        if can_harvest():
-            harvest()
-        
-        # decide which one to plant (base on num_items and polyculture)
-        # if low on Hay, plant Grass
-        if num_items(Items.Hay) < MIN_ITEMS(Items.Hay):
-            # if low on Wood, plant bush
-            inst = bush.create()
-            bush.prepare(inst)
-            bush.plant(inst)
-        elif num_items(Items.Wood) < MIN_ITEMS(Items.Wood):
-        # if low on Carrot, plant Carrot
-        elif num_items(Items.Carrot) < MIN_ITEMS(Items.Carrot):
-        # if polyculture has suggestion, plant base on it
-        elif poly[i][j] != None:
-        # else, plant grass anyway
-        else:
-            pass
-    inst[TEND] = tend
 
 # Width must be even (if odd, it is increased by 1)
 # size must be smaller than or equal to world size
@@ -59,55 +40,59 @@ def create(size):
         width += 1
     size = (width, height)
 
-    PATH = rect_path_even(size)
+    def create_poly_inst(i, j):
+        if (i + j) % 2 == 0:
+            gbtcs[i][j] = tree.create()
+        else:
+            gbtcs[i][j] = gbc.create()
+
     inst = {
     }
-
-    def prepare():
-        x0, y0 = get_pos_x(), get_pos_y()
-        for d in PATH:
-            x, y = get_pos_x(), get_pos_y()
-            i, j = x - x0, y - y0
-            if (i + j) % 2 == 0:
-                if can_harvest():
-                    harvest()
-                
-                # Only two ground type, no need. (May have more in future updates?)
-                # if get_ground_type() not in [Grounds.Turf, Grounds.Soil]:
-                #     till()
-                    
-                if not plant(E):
-                    quick_print("Error: unable to plant")
-            else:
-                odd_inst[PREPARE]()
-
-            move(d)
-    inst[PREPARE] = prepare
-
-    def tend():
-        x0, y0 = get_pos_x(), get_pos_y()
-        for d in PATH:
-            x, y = get_pos_x(), get_pos_y()
-            i, j = x - x0, y - y0
-            if (i + j) % 2 == 0:
-                if can_harvest():
-                    harvest()
-                plant(E)
-            else:
-                odd_inst[TEND]()
-
-            move(d)
-    inst[TEND] = tend
-
+    inst[SIZE] = size
+    inst[POLY] = matrix_of(size, None)
+    inst[PATH] = rect_path_even(size)
+    inst[GBTCS] = matrix(size, create_poly_inst)
     return inst
 
+def prepare(inst):
+    path = inst[PATH]
+    gbtcs = inst[GBTCS]
+    x0, y0 = get_pos_x(), get_pos_y()
+    for d in path:
+        x, y = get_pos_x(), get_pos_y()
+        i, j = x - x0, y - y0
+        if (i + j) % 2 == 0:
+            tree.prepare(gbtcs[i][j])
+        else:
+            gbc.prepare(gbtcs[i][j])
+
+        # safe because prepare() will also plant in G, B, T, C
+        set_polyculture(inst)
+
+        move(d)
+
+
+def tend(inst):
+    path = inst[PATH]
+    gbtcs = inst[GBTCS]
+    x0, y0 = get_pos_x(), get_pos_y()
+    for d in path:
+        x, y = get_pos_x(), get_pos_y()
+        i, j = x - x0, y - y0
+        if (i + j) % 2 == 0:
+            tree.tend(gbtcs[i][j])
+        else:
+            gbc.tend(gbtcs[i][j], inst[POLY])
+        set_polyculture(inst)
+        
+        move(d)
+
+
 def test():
-    import bush
-    odd_inst = bush.create()
-    obj = create(size=(10, 10), odd_inst=odd_inst)
-    obj[PREPARE]()
+    inst = create()
+    prepare(inst)
     while True:
-        obj[TEND]()
+        tend(inst)
 
 if __name__ == "__main__":
     test()
