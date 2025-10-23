@@ -5,18 +5,13 @@ import grass
 import bush
 import tree
 import carrot
-from utils import wait_for_harvest
+import gbc
+from utils import wait_for_harvest, matrix_of, rect_path_even, matrix
 
 G = Entities.Grass
 B = Entities.Bush
 T = Entities.Tree
 C = Entities.Carrots
-
-MIN_ITEMS = {
-    Items.Hay:1000,
-    Items.Wood:1000,
-    Items.Carrot:1000,
-}
 
 SIZE = "size"
 POLY = "polyculture"
@@ -26,9 +21,9 @@ GBTCS = "matrix of grass, bush, tree, carrot"
 def set_polyculture(inst):
     w, h = inst[SIZE]
     entity, pos = get_companion()
-    ci, cj = x - pos[0], y - pos[1]
+    ci, cj = get_pos_x() - pos[0], get_pos_y() - pos[1]
     if (0 <= ci and ci < w) and (0 <= cj and cj < h):
-        inst[POLY][i][j] = entity
+        inst[POLY][ci][cj] = entity
 
 
 # Width must be even (if odd, it is increased by 1)
@@ -42,9 +37,9 @@ def create(size):
 
     def create_poly_inst(i, j):
         if (i + j) % 2 == 0:
-            gbtcs[i][j] = tree.create()
+            return tree.create()
         else:
-            gbtcs[i][j] = gbc.create()
+            return gbc.create()
 
     inst = {
     }
@@ -89,7 +84,7 @@ def tend(inst):
 
 
 def test():
-    inst = create()
+    inst = create(size=(10, 8))
     prepare(inst)
     while True:
         tend(inst)

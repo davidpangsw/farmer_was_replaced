@@ -65,7 +65,7 @@ def rect_path_even(size):
     path[-1] = South
     return path
 
-def clamp(size, max_size)
+def clamp(size, max_size):
     return (min(size[0], max_size[0]), min(size[1], max_size[1]))
 
 def verify_entity_cost(entity, reserve_multiplier):
@@ -85,3 +85,36 @@ def wait_for_harvest():
     while not can_harvest():
         # print takes 1 second, it waits like doing a flip
         print("Wait[H]")
+
+def move_to_x(L, src, dest):
+    dir = East
+    dist = dest - src
+    if dist < 0:
+        dist += L
+
+    if dist < L / 2:
+        for i in range(dist):
+            move(dir)
+    else:
+        for i in range(L - dist):
+            move(reverse_direction(dir))
+
+def move_to_y(L, src, dest):
+    dir = North
+    dist = dest - src
+    if dist < 0:
+        dist += L
+
+    if dist < L / 2:
+        for i in range(dist):
+            move(dir)
+    else:
+        for i in range(L - dist):
+            move(reverse_direction(dir))
+
+def move_to(dest):
+    src = get_pos_x(), get_pos_y()
+
+    L = get_world_size()
+    move_to_x(L, src[0], dest[0])
+    move_to_y(L, src[1], dest[1])
