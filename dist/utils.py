@@ -12,6 +12,21 @@ DIRECTION_90_MAP = {
     South: East,
 }
 
+def array_of(n, value):
+    arr = []
+    for i in range(n):
+        arr.append(value)
+    return arr
+
+def matrix_of(size, value):
+    matrix = []
+    for i in range(size[0]):
+        row = []
+        for j in range(size[1]):
+            row.append(value)
+        matrix.append(row)
+    return matrix
+
 def reverse_direction(d):
     return DIRECTION_REVERSE_MAP[d]
 
@@ -21,25 +36,12 @@ def reverse_path(path):
         result.append(reverse_direction(d))
     return result
 
-def snake_path(size, dir):
-    path = []
-    for i in range(size[0] - 1)
-        path += [dir] * (size[1] - 1) + [DIRECTION_90_MAP(dir)]
-        dir = reverse_direction(dir)
-    path += [dir] * (size[1] - 1)
-
-    path += [None]
+# size must be even
+def square_path_even(size):
+    path = array_of(size-1, East) + [North]
+    for i in range(size // 2):
+        path += array_of(size-2, North) + [West]
+        path += array_of(size-2, South) + [West]
+    path[-1] = South
     return path
-
-def rectangle_path(size):
-    forward = []
-    dir = North
-    for i in range(size[0] - 1)
-        forward += [dir] * (size[1] - 1) + [East]
-        dir = reverse_direction(dir)
-    forward += [dir] * (size[1] - 1)
-    backward = reverse_path(forward)
-
-    forward += [None]
-    backward += [None]
-    return forward, backward
+    

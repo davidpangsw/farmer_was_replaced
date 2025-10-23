@@ -232,26 +232,23 @@ if ground == Grounds.Grassland:
 ---
 
 ### measure()
-Gathers entity-specific data from the entity under the drone.
+Can measure some values on some entities. The effect of this depends on the entity.
 
-**Parameters:**
-- None
+overloads:
+measure() measures the entity under the drone.
+measure(direction) measures the neighboring entity in the direction of the drone.
 
-**Returns:**
-- For sunflowers: The number of petals (integer)
-- For treasure: Treasure positions
-- For cactus: Cactus size
-- For dinosaur: Dinosaur type
-- `None` if no measurable entity or entity doesn't have measurements
+returns the number of petals of a sunflower.
+returns the next position for a treasure.
+returns the size of a cactus.
+returns the number corresponding to the type of a dinosaur.
+returns None for all other entities.
 
-**Operation Cost:**
-- 1 operation
+takes the time of 1 operation to execute.
 
-**Example:**
+example usage:
 ```python
-if get_entity_type() == Entities.Sunflower:
-    petals = measure()
-    quick_print("Petals: {}".format(petals))
+num_petals = measure()
 ```
 
 ---
@@ -699,14 +696,16 @@ def harvest_field():
 
 Available entity types that can exist on the farm:
 
-- `Entities.Bush`
-- `Entities.Carrot`
 - `Entities.Grass`
-- `Entities.Hedge`
+- `Entities.Bush`
+- `Entities.Tree`
+- `Entities.Carrot`
 - `Entities.Pumpkin`
 - `Entities.Sunflower`
-- `Entities.Tree`
+- `Entities.Cactus`
+- `Entities.Hedge`
 - `Entities.Treasure`
+- `Entities.Dinosaur`
 
 **Usage:**
 ```python
