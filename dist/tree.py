@@ -1,7 +1,49 @@
 from utils import rect_path_even
-from prototype import PREPARE, TEND, SIZE
 
 E = Entities.Tree
+
+ODD_INST = "odd_instance"
+PATH = "path"
+def prepare(inst):
+    path = inst[PATH]
+    odd_inst = inst[ODD_INST]
+
+    x0, y0 = get_pos_x(), get_pos_y()
+    for d in path:
+        x, y = get_pos_x(), get_pos_y()
+        i, j = x - x0, y - y0
+        if (i + j) % 2 == 0:
+            if can_harvest():
+                harvest()
+
+            # Only two ground type, no need. (May have more in future updates?)
+            # if get_ground_type() not in [Grounds.Turf, Grounds.Soil]:
+            #     till()
+
+            if not plant(E):
+                quick_print("Error: unable to plant")
+        else:
+            prepare(odd_inst)
+
+        move(d)
+
+def tend(inst):
+    path = inst[PATH]
+    odd_inst = inst[ODD_INST]
+
+    x0, y0 = get_pos_x(), get_pos_y()
+    for d in path:
+        x, y = get_pos_x(), get_pos_y()
+        i, j = x - x0, y - y0
+        if (i + j) % 2 == 0:
+            if can_harvest():
+                harvest()
+            plant(E)
+        else:
+            tend(odd_inst)
+
+        move(d)
+
 # Width must be even (if odd, it is increased by 1)
 # size must be smaller than or equal to world size
 def create(size, odd_inst):
@@ -11,56 +53,21 @@ def create(size, odd_inst):
         width += 1
     size = (width, height)
 
-    PATH = rect_path_even(size)
+    path = rect_path_even(size)
     inst = {
-        SIZE: size,
+        PATH: path,
+        ODD_INST: odd_inst,
     }
-
-    def prepare():
-        x0, y0 = get_pos_x(), get_pos_y()
-        for d in PATH:
-            x, y = get_pos_x(), get_pos_y()
-            i, j = x - x0, y - y0
-            if (i + j) % 2 == 0:
-                if can_harvest():
-                    harvest()
-                
-                # Only two ground type, no need. (May have more in future updates?)
-                # if get_ground_type() not in [Grounds.Turf, Grounds.Soil]:
-                #     till()
-                    
-                if not plant(E):
-                    quick_print("Error: unable to plant")
-            else:
-                odd_inst[PREPARE]()
-
-            move(d)
-    inst[PREPARE] = prepare
-
-    def tend():
-        x0, y0 = get_pos_x(), get_pos_y()
-        for d in PATH:
-            x, y = get_pos_x(), get_pos_y()
-            i, j = x - x0, y - y0
-            if (i + j) % 2 == 0:
-                if can_harvest():
-                    harvest()
-                plant(E)
-            else:
-                odd_inst[TEND]()
-
-            move(d)
-    inst[TEND] = tend
 
     return inst
 
 def test():
     import bush
     odd_inst = bush.create()
-    obj = create(size=(10, 10), odd_inst=odd_inst)
-    obj[PREPARE]()
+    inst = create(size=(10, 10), odd_inst=odd_inst)
+    prepare(inst)
     while True:
-        obj[TEND]()
+        tend(inst)
 
 if __name__ == "__main__":
     test()

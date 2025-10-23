@@ -1,31 +1,27 @@
-from prototype import PREPARE, TEND
-
 E = Entities.Grass
+
+def prepare(inst):
+    if can_harvest():
+        harvest()
+
+    if get_ground_type() == Grounds.Soil:
+        till()
+
+def tend(inst):
+    if can_harvest():
+        harvest()
+
 def create():
     inst = {
     }
-    
-    # prepare the current cell
-    def prepare():
-        if can_harvest():
-            harvest()
-        
-        if get_ground_type() == Grounds.Soil:
-            till()
-    inst[PREPARE] = prepare
-
-    def tend():
-        if can_harvest():
-            harvest()
-    inst[TEND] = tend
 
     return inst
 
 def test():
-    obj = create()
-    obj[PREPARE]()
+    inst = create()
+    prepare(inst)
     while True:
-        obj[TEND]()
+        tend(inst)
 
 if __name__ == "__main__":
     test()

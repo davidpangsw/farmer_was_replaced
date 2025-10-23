@@ -1,30 +1,27 @@
-from prototype import PREPARE, TEND
-
 E = Entities.Bush
+
+def prepare(inst):
+    if can_harvest():
+        harvest()
+
+    plant(E)
+
+def tend(inst):
+    if can_harvest():
+        harvest()
+        plant(E)
+
 def create():
     inst = {
     }
 
-    def prepare():
-        if can_harvest():
-            harvest()
-        
-        plant(E)
-    inst[PREPARE] = prepare
-
-    def tend():
-        if can_harvest():
-            harvest()
-            plant(E)
-    inst[TEND] = tend
-
     return inst
 
 def test():
-    obj = create()
-    obj[PREPARE]()
+    inst = create()
+    prepare(inst)
     while True:
-        obj[TEND]()
+        tend(inst)
 
 if __name__ == "__main__":
     test()
