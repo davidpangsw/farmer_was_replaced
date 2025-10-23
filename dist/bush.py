@@ -1,28 +1,27 @@
-from prototype import POSITION, ENTITY, PREPARE, TEND
+from prototype import PREPARE, TEND
 
-def create(pos):
+E = Entities.Bush
+def create():
     inst = {
-        POSITION: pos,
-        ENTITY: Entities.Bush,
     }
 
     def prepare():
         if can_harvest():
             harvest()
         
-        plant(inst[ENTITY])
+        plant(E)
     inst[PREPARE] = prepare
 
     def tend():
         if can_harvest():
             harvest()
-            plant(inst[ENTITY])
+            plant(E)
     inst[TEND] = tend
 
     return inst
 
 def test():
-    obj = create(pos=(0, 0))
+    obj = create()
     obj[PREPARE]()
     while True:
         obj[TEND]()

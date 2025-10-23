@@ -692,30 +692,6 @@ def harvest_field():
 
 ## Enumeration Objects
 
-### Entities
-
-Available entity types that can exist on the farm:
-
-- `Entities.Grass`
-- `Entities.Bush`
-- `Entities.Tree`
-- `Entities.Carrot`
-- `Entities.Pumpkin`
-- `Entities.Sunflower`
-- `Entities.Cactus`
-- `Entities.Hedge`
-- `Entities.Treasure`
-- `Entities.Dinosaur`
-
-**Usage:**
-```python
-plant(Entities.Bush)
-if get_entity_type() == Entities.Carrot:
-    harvest()
-```
-
----
-
 ### Grounds
 
 Available ground types:
@@ -727,43 +703,6 @@ Available ground types:
 ```python
 if get_ground_type() == Grounds.Turf:
     till()
-```
-
----
-
-### Items
-
-Available item types in inventory and shop:
-
-**Seeds:**
-- `Items.Carrot_Seed`
-- `Items.Pumpkin_Seed`
-- `Items.Sunflower_Seed`
-
-**Harvested Items:**
-- `Items.Carrot`
-- `Items.Pumpkin`
-- `Items.Hay` (from grass)
-- `Items.Wood` (from trees/bushes)
-
-**Resources:**
-- `Items.Gold`
-- `Items.Power`
-
-**Tools:**
-- `Items.Water_Tank`
-- `Items.Empty_Tank`
-- `Items.Fertilizer`
-
-**Other:**
-- `Items.Piggy`
-
-**Usage:**
-```python
-if num_items(Items.Carrot_Seed) < 10:
-    trade(Items.Carrot_Seed, 10)
-
-use_item(Items.Fertilizer)
 ```
 
 ---

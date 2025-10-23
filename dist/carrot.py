@@ -1,9 +1,9 @@
-from prototype import POSITION, ENTITY, PREPARE, TEND
+from prototype import PREPARE, TEND
+from utils import wait_for_seed
 
-def create(pos):
+E = Entities.Carrot
+def create():
     inst = {
-        POSITION: pos,
-        ENTITY: Entities.Carrot,
     }
 
     def prepare():
@@ -13,19 +13,21 @@ def create(pos):
         if get_ground_type() != Grounds.Soil:
             till()
 
-        plant(inst[ENTITY])
+        wait_for_seed(E, 100)
+        plant(E)
     inst[PREPARE] = prepare
 
     def tend():
         if can_harvest():
             harvest()
-            plant(inst[ENTITY])
+            wait_for_seed(E, 100)
+            plant(E)
     inst[TEND] = tend
 
     return inst
 
 def test():
-    obj = create(pos=(0, 0))
+    obj = create()
     obj[PREPARE]()
     while True:
         obj[TEND]()

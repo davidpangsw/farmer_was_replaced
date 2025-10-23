@@ -1,14 +1,12 @@
-from prototype import POSITION, ENTITY, PREPARE, TEND
+from prototype import PREPARE, TEND
 
-def create(pos):
+E = Entities.Grass
+def create():
     inst = {
-        POSITION: pos,
-        ENTITY: Entities.Grass,
     }
     
     # prepare the current cell
     def prepare():
-        entity = get_entity_type()
         if can_harvest():
             harvest()
         
@@ -24,7 +22,7 @@ def create(pos):
     return inst
 
 def test():
-    obj = create(pos=(0, 0))
+    obj = create()
     obj[PREPARE]()
     while True:
         obj[TEND]()
