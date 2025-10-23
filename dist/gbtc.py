@@ -1,7 +1,10 @@
 # Plant trees in a checkboard, with Grass, Bush, and Carrots in between
 # Make use of polyculture
 
-from tree import create
+import grass
+import bush
+import tree
+import carrot
 from prototype import PREPARE, TEND
 
 G = Entities.Grass
@@ -33,7 +36,10 @@ def create_gbc():
         # decide which one to plant (base on num_items and polyculture)
         # if low on Hay, plant Grass
         if num_items(Items.Hay) < MIN_ITEMS(Items.Hay):
-        # if low on Wood, plant bush
+            # if low on Wood, plant bush
+            inst = bush.create()
+            bush.prepare(inst)
+            bush.plant(inst)
         elif num_items(Items.Wood) < MIN_ITEMS(Items.Wood):
         # if low on Carrot, plant Carrot
         elif num_items(Items.Carrot) < MIN_ITEMS(Items.Carrot):
@@ -41,7 +47,7 @@ def create_gbc():
         elif poly[i][j] != None:
         # else, plant grass anyway
         else:
-        pass
+            pass
     inst[TEND] = tend
 
 # Width must be even (if odd, it is increased by 1)
