@@ -1,6 +1,6 @@
 from prototype import POSITION, ENTITY, PREPARE, TEND, SIZE
 
-def create(pos, size, other_entities = [Entities.Grass]):
+def create(pos, size, odd_inst):
     inst = {
         POSITION: pos,
         ENTITY: Entities.Tree,
