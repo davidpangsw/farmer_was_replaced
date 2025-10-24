@@ -19,6 +19,9 @@ globals = {
 def get_ch_ctrl():
     return globals[CH_CTRL]
 
+def set_ch_ctrl(value):
+    globals[CH_CTRL] = value
+
 def wait_for_state_change(inst, prev_state):
     ctrl = inst[GET_CH_CTRL]()
     state = ctrl[CTRL_STATE]
@@ -158,6 +161,7 @@ def test():
     L = get_world_size()
     width = 8
     ch_ctrl = create_ch_ctrl()
+    globals[CH_CTRL] = ch_ctrl
 
     count = 0
     for x in range(0, L + 1 - width, width):
@@ -169,6 +173,7 @@ def test():
     ch_ctrl[CTRL_COUNT] = count
     ch_ctrl[CTRL_TOTAL] = count
     ch_ctrl[CTRL_STATE] = -1
+    set_ch_ctrl(ch_ctrl)
 
     # main drone just stay (We have more than enough drones)
 if __name__ == "__main__":
