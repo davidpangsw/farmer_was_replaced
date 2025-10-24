@@ -31,10 +31,11 @@ def replant(inst):
     move_to((x0, y0))
     for d in path:
         if get_entity_type() == Entities.sunflower:
-            continue
-        wait_for_seed(E, 100)
-        plant(E)
-        heappush(pq, (-measure(), (get_pos_x(), get_pos_y())))
+            pass
+        else:
+            wait_for_seed(E, 100)
+            plant(E)
+            heappush(pq, (-measure(), (get_pos_x(), get_pos_y())))
         move(d)
 
 def tend(inst):
@@ -50,13 +51,13 @@ def tend(inst):
     wait_for_harvest(True)
     harvest()
 
-    wait_for_seed(E, 100)
-
     # plant back (slow, need to wait it grow)
+    # wait_for_seed(E, 100)
     # plant(E)
     # heappush(pq, (-measure(), (get_pos_x(), get_pos_y())))
 
 # width, height in size should be positive
+# width should be even
 def create(pos, size):
     w, h = size
     if w % 2 == 1:
