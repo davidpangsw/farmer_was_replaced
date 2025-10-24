@@ -63,12 +63,11 @@ def tend(inst):
             plant(E)
             move(d)
 
-def create_square(width):
+def create_square(pos, width):
     if width % 2 == 1:
         quick_print("Error: width is not even, increased by 1")
         width += 1
     size = width, width
-    pos = get_pos_x(), get_pos_y()
 
     path = square_path_even(width)
     inst = {
@@ -80,7 +79,7 @@ def create_square(width):
     return inst
 
 def test():
-    inst = create_square(width=10)
+    inst = create_square((get_pos_x(), get_pos_y()), width=10)
     prepare(inst)
     while True:
         tend(inst)

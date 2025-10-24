@@ -1,6 +1,7 @@
 from utils import wait_for_seed
 
 E = Entities.Carrot
+POS = "position"
 def prepare(inst):
     if can_harvest():
         harvest()
@@ -17,14 +18,15 @@ def tend(inst):
         wait_for_seed(E, 100)
         plant(E)
         
-def create():
+def create(pos):
     inst = {
+        POS: pos,
     }
 
     return inst
 
 def test():
-    inst = create()
+    inst = create((get_pos_x(), get_pos_y()))
     prepare(inst)
     while True:
         tend(inst)

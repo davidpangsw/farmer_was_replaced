@@ -4,6 +4,7 @@ MIN_WATER = 5000
 MIN_WATER_LEVEL = 0.5
 MIN_FERTILIZER = 5000
 E = Entities.Pumpkin
+POS = "position"
 WIDTH = "width"
 PATH = "path"
 PATH_BACK = "path_back"
@@ -56,7 +57,7 @@ def tend(inst):
 
     harvest()
 
-def create(width):
+def create(pos, width):
     if width % 2 == 1:
         quick_print("Warning: width is not even, increased by 1")
         width += 1
@@ -66,6 +67,7 @@ def create(width):
     path_back = reverse_path(path)
 
     inst = {
+        POS: pos,
         WIDTH: width,
         PATH: path,
         PATH_BACK: path_back,
@@ -74,7 +76,7 @@ def create(width):
     return inst
 
 def test():
-    inst = create(width=6)
+    inst = create((get_pos_x(), get_pos_y()), width=6)
     prepare(inst)
     while True:
         tend(inst)

@@ -13,6 +13,7 @@ B = Entities.Bush
 T = Entities.Tree
 C = Entities.Carrots
 
+POS = "position"
 SIZE = "size"
 POLY = "polyculture"
 PATH = "path"
@@ -28,21 +29,24 @@ def set_polyculture(inst):
 
 # Width must be even (if odd, it is increased by 1)
 # size must be smaller than or equal to world size
-def create(size):
+def create(pos, size):
     width, height = size
     if width % 2 == 1:
         quick_print("Warning: width is not even, increased by 1")
         width += 1
     size = (width, height)
+    x0, y0 = pos
 
     def create_poly_inst(i, j):
+        cell_pos = (x0 + i, y0 + j)
         if (i + j) % 2 == 0:
-            return tree.create()
+            return tree.create(cell_pos)
         else:
-            return gbc.create()
+            return gbc.create(cell_pos)
 
     inst = {
     }
+    inst[POS] = pos
     inst[SIZE] = size
     inst[POLY] = matrix_of(size, None)
     inst[PATH] = rect_path_even(size)
@@ -84,7 +88,7 @@ def tend(inst):
 
 
 def test():
-    inst = create(size=(10, 8))
+    inst = create((get_pos_x(), get_pos_y()), size=(10, 8))
     prepare(inst)
     while True:
         tend(inst)

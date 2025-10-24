@@ -10,6 +10,7 @@ G = Entities.Grass
 B = Entities.Bush
 C = Entities.Carrots
 GBC = [G, B, C]
+POS = "position"
 MIN_ITEMS = {
     Items.Hay:1000,
     Items.Wood:1000,
@@ -45,21 +46,25 @@ def tend(inst, poly=None):
     # We can assume the tile is either planting G,B, or C
     # In any case, it should be safe to wait until harvest
     wait_for_harvest()
-    
+
+    pos = (get_pos_x(), get_pos_y())
     to_plant = decide_to_plant(poly)
     if to_plant == G:
-        grass.prepare(grass.create())
+        grass.prepare(grass.create(pos))
     elif to_plant == B:
-        bush.prepare(bush.create())
+        bush.prepare(bush.create(pos))
     else: # C
-        carrot.prepare(carrot.create())
+        carrot.prepare(carrot.create(pos))
 
-def create():
+def create(pos):
     inst = {
+        POS: pos,
     }
 
+    return inst
+
 def test():
-    inst = create()
+    inst = create((get_pos_x(), get_pos_y()))
     prepare(inst)
     while True:
         tend(inst)
