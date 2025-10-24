@@ -81,7 +81,7 @@ def nsmallest(n, iterable, key=None):
     it = iter(iterable)
     result = []
 
-    if key is None:
+    if key == None:
         for i in range(n):
             try:
                 result.append(next(it))
@@ -118,7 +118,7 @@ def nlargest(n, iterable, key=None):
     it = iter(iterable)
     result = []
 
-    if key is None:
+    if key == None:
         for i in range(n):
             try:
                 result.append(next(it))

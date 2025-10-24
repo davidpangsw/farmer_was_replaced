@@ -763,6 +763,8 @@ Standard Python operators: `+`, `-`, `*`, `/`, `%`, `**`, `==`, `!=`, `<`, `>`, 
 
 Constants: `True`, `False`, `None`
 
+There are no bitwise operators. There is no "is" operator.
+
 ---
 
 ## Language Limitations
