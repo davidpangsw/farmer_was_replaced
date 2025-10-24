@@ -40,23 +40,28 @@ def tend(inst):
         plant(E)
         move(d)
 
-    for d in path_back:
-        while not can_harvest():
-            # if it is a dead pumpkin, replace
-            if get_entity_type() == Entities.Dead_Pumpkin:
-                plant(E)
+    is_ready = False
+    while not is_ready:
+        is_ready = True
+        for d in path:
+            if not can_harvest():
+                is_ready = False
 
-            # water, if water level is low and we have water
-            if get_water() < MIN_WATER_LEVEL and num_items(Items.Water) > MIN_WATER:
-                use_item(Items.Water)
-            # fertilize, if we have fertilizer
-            elif num_items(Items.Fertilizer) > MIN_FERTILIZER:
-                use_item(Items.Fertilizer)
-            # wait
-            else:
-                do_a_flip()
+                # if it is a dead pumpkin, replace
+                if get_entity_type() == Entities.Dead_Pumpkin:
+                    plant(E)
 
-        move(d)
+                # water, if water level is low and we have water
+                if get_water() < MIN_WATER_LEVEL and num_items(Items.Water) > MIN_WATER:
+                    use_item(Items.Water)
+                # fertilize, if we have fertilizer
+                elif num_items(Items.Fertilizer) > MIN_FERTILIZER:
+                    use_item(Items.Fertilizer)
+                # wait
+                else:
+                    pass
+
+            move(d)
 
     harvest()
 
