@@ -91,12 +91,12 @@ def test():
     
     L = get_world_size()
     D = max_drones()
-    width = 4 # max at 6
+    width = 6 # max at 6
 
     for x in range(0, L + 1- width, width):
         for y in range(0, L + 1 - width, width):
             i, j = x // width, y // width
-            if (i, j) == (1, 0):
+            if (i, j) in [(1, 0), (0, 1)]:
                 inst = sunflower.create((x, y), (width, width))
             elif (i + j) % 2 == 0:
                 inst = create((x, y), width)
