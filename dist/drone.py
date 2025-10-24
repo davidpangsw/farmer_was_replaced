@@ -1,4 +1,5 @@
-from prototype import POS, PREPARE, TENd
+from utils import move_to
+from prototype import POS, PREPARE, TEND
 def drone_main(inst):
     pos = inst[POS]
     prepare = inst[PREPARE]
