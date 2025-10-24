@@ -1,11 +1,14 @@
 import cactus
+import gbtc
+import sunflower
+import pumpkin
 
 
 clear()
 
 L = get_world_size()
 
-cactus_farm = cactus.create_square(width=10)
-gbtc_farm = gbtc.create(size=(10, L-10))
-sunflower_farm = sunflower.create((L-6, 0), (6, L-6))
-pumpkin_farm = pumpkin.create(width=6)
+cactus_farm = cactus.create_square((0, 0), width=10)
+gbtc_farm = gbtc.create((0, 10), size=(10, L-10))
+sunflower_farm = sunflower.create((10, 0), (L-10, L-6))
+pumpkin_farm = pumpkin.create((L-6, L-6), width=6)
