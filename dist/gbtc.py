@@ -11,7 +11,7 @@ from utils import wait_for_harvest, matrix_of, rect_path_even, matrix
 G = Entities.Grass
 B = Entities.Bush
 T = Entities.Tree
-C = Entities.Carrots
+C = Entities.Carrot
 
 POS = "position"
 SIZE = "size"

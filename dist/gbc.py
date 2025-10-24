@@ -8,7 +8,7 @@ from utils import wait_for_harvest
 
 G = Entities.Grass
 B = Entities.Bush
-C = Entities.Carrots
+C = Entities.Carrot
 GBC = [G, B, C]
 POS = "position"
 MIN_ITEMS = {
