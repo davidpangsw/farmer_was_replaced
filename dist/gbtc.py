@@ -20,9 +20,13 @@ PATH = "path"
 GBTCS = "matrix of grass, bush, tree, carrot"
 
 def set_polyculture(inst):
+    x0, y0 = inst[POS]
     w, h = inst[SIZE]
-    entity, pos = get_companion()
-    ci, cj = get_pos_x() - pos[0], get_pos_y() - pos[1]
+    comp = get_companion()
+    if comp == None:
+        return
+    entity, pos = comp
+    ci, cj = pos[0] - x0, pos[1] - y0
     if (0 <= ci and ci < w) and (0 <= cj and cj < h):
         inst[POLY][ci][cj] = entity
 

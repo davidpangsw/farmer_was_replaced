@@ -1,3 +1,4 @@
+from utils import matrix_of, move_to
 from utils import DIRECTIONS, DIRECTION_TO_VECTOR, DIRECTION_REVERSE_MAP
 
 POS = "position"

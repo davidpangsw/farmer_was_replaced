@@ -859,3 +859,8 @@ elif ground == Grounds.Soil:
 ---
 
 *This reference document is based on official wiki documentation and community research. All function behaviors are subject to game updates.*
+
+
+## Other
+can_move(dir)
+return True if can move in a maze

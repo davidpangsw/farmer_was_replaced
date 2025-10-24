@@ -20,20 +20,20 @@ MIN_ITEMS = {
 def decide_to_plant(inst, poly):
     # decide which one to plant
     # if low on Hay, plant Grass
-    if num_items(Items.Hay) < MIN_ITEMS(Items.Hay):
+    if num_items(Items.Hay) < MIN_ITEMS[Items.Hay]:
         return G
     # if low on Wood, plant bush
-    elif num_items(Items.Wood) < MIN_ITEMS(Items.Wood):
+    elif num_items(Items.Wood) < MIN_ITEMS[Items.Wood]:
         return B
     # if low on Carrot, plant Carrot
-    elif num_items(Items.Carrot) < MIN_ITEMS(Items.Carrot):
+    elif num_items(Items.Carrot) < MIN_ITEMS[Items.Carrot]:
         return C
     # if polyculture has suggestion, plant base on it
     elif poly != None:
         return poly
     # else, randomly choose from [G, B, C]
     else:
-        return GBC[random() * 3]
+        return GBC[int(random() * 3)]
 
 def prepare(inst):
     if can_harvest():
@@ -48,7 +48,7 @@ def tend(inst, poly=None):
     wait_for_harvest()
 
     pos = (get_pos_x(), get_pos_y())
-    to_plant = decide_to_plant(poly)
+    to_plant = decide_to_plant(inst, poly)
     if to_plant == G:
         grass.prepare(grass.create(pos))
     elif to_plant == B:
