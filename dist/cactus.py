@@ -1,5 +1,6 @@
 from prototype import PREPARE, TEND, POS, SIZE
 from utils import square_path_even
+from drone import spawn_drone_main
 
 E = Entities.Cactus
 IS_GROWN = "is_grown"
@@ -85,10 +86,10 @@ def test():
     
     L = get_world_size()
     D = max_drones()
-    width = 10
+    width = 8 # max at 10
 
-    for x in range(0, L - width, width):
-        for y in range(0, L - width, width):
+    for x in range(0, L + 1 - width, width):
+        for y in range(0, L + 1 - width, width):
             i, j = x // width, y // width
             if (i, j) == (1, 0):
                 inst = sunflower.create((x, y), (width, width))

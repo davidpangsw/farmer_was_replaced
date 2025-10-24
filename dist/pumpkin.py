@@ -93,8 +93,8 @@ def test():
     D = max_drones()
     width = 6
 
-    for x in range(0, L - width, width):
-        for y in range(0, L - width, width):
+    for x in range(0, L + 1- width, width):
+        for y in range(0, L + 1 - width, width):
             i, j = x // width, y // width
             if (i, j) == (1, 0):
                 inst = sunflower.create((x, y), (width, width))
