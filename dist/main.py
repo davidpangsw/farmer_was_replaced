@@ -21,10 +21,9 @@ x += width
 
 width = 6
 spawn_drone_main(pumpkin.create((x, 0), width))
-spawn_drone_main(sunflower.create((x, 6), (width, 6)))
+spawn_drone_main(gbtc.create((x, 6), (width, 6)))
 spawn_drone_main(pumpkin.create((x, 12), width))
-spawn_drone_main(gbtc.create((x, 18), (width, 6)))
-spawn_drone_main(gbtc.create((x, 24), (width, 8)))
+spawn_drone_main(sunflower.create((x, 18), (width, 14)))
 x += width
 
 width = L-16
