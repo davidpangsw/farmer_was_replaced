@@ -13,6 +13,8 @@ def step(inst):
 
 def prepare():
     change_hat(Hats.Dinosaur_Hat)
+    step(inst)
+    
 
 def tend(inst):
     pos = inst[POS]
@@ -29,6 +31,7 @@ def tend(inst):
             inst[COUNT] = 0
 
 def create():
+    pass
 
 
 def test():
