@@ -43,8 +43,8 @@ def tend(inst):
     width = inst[WIDTH]
 
     plant(Entities.Bush)
-    n_substance = width * width * num_unlocked(Unlocks.Mazes)
-    use_item(Items.Weird_Substance, n_substance)
+    substance = width * 2 ** (num_unlocked(Unlocks.Mazes) - 1)
+    use_item(Items.Weird_Substance, substance)
 
     search(inst)
     harvest()
@@ -59,3 +59,14 @@ def create(pos, width):
         WIDTH: width,
     }
     return inst
+
+
+def test():
+    clear()
+    inst = create((get_pos_x(), get_pos_y()), 10)
+    prepare(inst)
+    while True:
+        tend(inst)
+
+if __name__ == "__main__":
+    test()
