@@ -135,3 +135,17 @@ def sqrt_floor(x):
         if i * i > x:
             return i-1
     return None
+
+# def split_world(grids):
+#     m, n = grids
+#     L = get_world_size()
+#     width, height = L // m, L // n
+
+#     result = []
+#     for i in range(m):
+#         row = []
+#         for j in range(n):
+#             x, y = i * m, j * n
+#             row.append((i, j), (x, y), grid_size)
+#         result.append(row)
+#     return result

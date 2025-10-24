@@ -82,10 +82,21 @@ def create_square(pos, width):
 
 def test():
     clear()
-    inst = create_square((get_pos_x(), get_pos_y()), 10)
-    prepare(inst)
-    while True:
-        tend(inst)
+    
+    L = get_world_size()
+    D = max_drones()
+    width = 10
+
+    for x in range(0, L - width, width):
+        for y in range(0, L - width, width):
+            i, j = x // width, y // width
+            if (i, j) == (1, 0):
+                inst = sunflower.create((x, y), (width, width))
+            elif (i + j) % 2 == 0:
+                inst = create_square((x, y), width)
+            else:
+                inst = gbtc.create((x, y), (width, width))
+            spawn_drone_main(inst)
 
 if __name__ == "__main__":
     test()
