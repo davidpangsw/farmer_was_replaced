@@ -94,7 +94,8 @@ def wait_for_harvest(watering=False, min_water_level=0.5, min_water=5000):
             if get_water() < min_water_level and num_items(Items.Water) > min_water:
                 use_item(Items.Water)
         # print takes 1 second, it waits like doing a flip
-        print("Wait[H]")
+        # print("Wait[H]")
+        do_a_flip()
 
 def move_to_x(L, src, dest):
     dir = East

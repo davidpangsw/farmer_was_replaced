@@ -1,10 +1,9 @@
+from prototype import PREPARE, TEND, POS, SIZE
 from utils import square_path_even
 
 E = Entities.Cactus
 IS_GROWN = "is_grown"
 IS_SORTED = "is_sorted"
-POS = "position"
-SIZE = "size"
 PATH = "path"
 
 def bubble(inst):
@@ -71,6 +70,9 @@ def create_square(pos, width):
 
     path = square_path_even(width)
     inst = {
+        PREPARE: prepare,
+        TEND: tend,
+
         POS: pos,
         SIZE: size,
         PATH: path,

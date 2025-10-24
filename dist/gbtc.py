@@ -1,6 +1,7 @@
 # Plant trees in a checkboard, with Grass, Bush, and Carrots in between
 # Make use of polyculture
 
+from prototype import PREPARE, TEND, POS, SIZE
 import grass
 import bush
 import tree
@@ -12,9 +13,6 @@ G = Entities.Grass
 B = Entities.Bush
 T = Entities.Tree
 C = Entities.Carrot
-
-POS = "position"
-SIZE = "size"
 POLY = "polyculture"
 PATH = "path"
 GBTCS = "matrix of grass, bush, tree, carrot"
@@ -49,12 +47,15 @@ def create(pos, size):
             return gbc.create(cell_pos)
 
     inst = {
+        PREPARE: prepare,
+        TEND: tend,
+
+        POS: pos,
+        SIZE: size,
+        POLY: matrix_of(size, None),
+        PATH: rect_path_even(size),
+        GBTCS: matrix(size, create_poly_inst),
     }
-    inst[POS] = pos
-    inst[SIZE] = size
-    inst[POLY] = matrix_of(size, None)
-    inst[PATH] = rect_path_even(size)
-    inst[GBTCS] = matrix(size, create_poly_inst)
     return inst
 
 def prepare(inst):

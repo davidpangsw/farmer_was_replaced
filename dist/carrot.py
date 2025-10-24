@@ -1,7 +1,7 @@
+from prototype import PREPARE, TEND, POS
 from utils import wait_for_seed
 
 E = Entities.Carrot
-POS = "position"
 def prepare(inst):
     if can_harvest():
         harvest()
@@ -20,6 +20,9 @@ def tend(inst):
         
 def create(pos):
     inst = {
+        PREPARE: prepare,
+        TEND: tend,
+
         POS: pos,
     }
 

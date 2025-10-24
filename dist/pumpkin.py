@@ -1,10 +1,10 @@
+from prototype import PREPARE, TEND, POS
 from utils import rect_path_even, reverse_path, wait_for_seed
 
 MIN_WATER = 5000
 MIN_WATER_LEVEL = 0.5
 MIN_FERTILIZER = 5000
 E = Entities.Pumpkin
-POS = "position"
 WIDTH = "width"
 PATH = "path"
 PATH_BACK = "path_back"
@@ -67,6 +67,9 @@ def create(pos, width):
     path_back = reverse_path(path)
 
     inst = {
+        PREPARE: prepare,
+        TEND: tend,
+
         POS: pos,
         WIDTH: width,
         PATH: path,

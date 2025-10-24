@@ -1,9 +1,8 @@
+from prototype import PREPARE, TEND, POS, SIZE
 from utils import wait_for_seed, wait_for_harvest, move_to
 from heapq import heappop, heappush
 
 E = Entities.Sunflower
-POS = "position"
-SIZE = "size"
 PQ = "priority queue"
 def prepare(inst):
     x0, y0 = inst[POS]
@@ -34,6 +33,9 @@ def tend(inst):
     _, pos = heappop(pq)
     move_to(pos)
 
+    if not can_harvest():
+        use_item(Items.Fertilizer)
+        use_item(Items.Weird_Substance)
     wait_for_harvest(True)
     harvest()
 
@@ -44,6 +46,9 @@ def tend(inst):
 # width, height in size should be positive
 def create(pos, size):
     inst = {
+        PREPARE: prepare,
+        TEND: tend,
+
         POS: pos,
         SIZE: size,
         PQ: [],

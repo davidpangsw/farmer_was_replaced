@@ -1,5 +1,6 @@
+from prototype import PREPARE, TEND, POS
+
 E = Entities.Bush
-POS = "position"
 
 def prepare(inst):
     if can_harvest():
@@ -14,6 +15,9 @@ def tend(inst):
 
 def create(pos):
     inst = {
+        PREPARE: prepare,
+        TEND: tend,
+
         POS: pos,
     }
 

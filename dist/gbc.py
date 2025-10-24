@@ -1,6 +1,7 @@
 # Plant trees in a checkboard, with Grass, Bush, and Carrots in between
 # Make use of polyculture
 
+from prototype import PREPARE, TEND, POS
 import grass
 import bush
 import carrot
@@ -10,7 +11,6 @@ G = Entities.Grass
 B = Entities.Bush
 C = Entities.Carrot
 GBC = [G, B, C]
-POS = "position"
 MIN_ITEMS = {
     Items.Hay:1000,
     Items.Wood:1000,
@@ -58,6 +58,9 @@ def tend(inst, poly=None):
 
 def create(pos):
     inst = {
+        PREPARE: prepare,
+        TEND: tend,
+
         POS: pos,
     }
 

@@ -1,5 +1,5 @@
 
-POSITION = "position"
+POS = "position"
 ENTITY = "entity"
 
 # prepare (init) the current cell
