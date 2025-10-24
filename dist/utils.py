@@ -129,3 +129,9 @@ def move_to(dest):
     L = get_world_size()
     move_to_x(L, src[0], dest[0])
     move_to_y(L, src[1], dest[1])
+
+def sqrt_round(x):
+    for i in range(x):
+        if i * i > x:
+            return i-1
+    return None

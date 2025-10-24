@@ -4,26 +4,13 @@ import sunflower
 import pumpkin
 from prototype import POS, PREPARE, TEND
 from utils import move_to
+from drone import spawn_drone_main, drone_main
 
 
 clear()
 
 L = get_world_size()
 
-def drone_main(inst):
-    pos = inst[POS]
-    prepare = inst[PREPARE]
-    tend = inst[TEND]
-
-    move_to(pos)
-    prepare(inst)
-    while True:
-        tend(inst)
-
-def spawn_drone_main(inst):
-    def f():
-        drone_main(inst)
-    spawn_drone(f)
 
 spawn_drone_main(sunflower.create((0, 0), (10, 2)))
 spawn_drone_main(cactus.create_square((0, 2), 10))

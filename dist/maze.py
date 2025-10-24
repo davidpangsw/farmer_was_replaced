@@ -1,6 +1,7 @@
 from prototype import PREPARE, TEND, POS
-from utils import matrix_of, move_to
+from utils import matrix_of, move_to, sqrt_round
 from utils import DIRECTIONS, DIRECTION_TO_VECTOR, DIRECTION_REVERSE_MAP
+from drone import spawn_drone_main, drone_main
 
 WIDTH = "width"
 
@@ -63,10 +64,14 @@ def create(pos, width):
 
 def test():
     clear()
-    inst = create((get_pos_x(), get_pos_y()), 10)
-    prepare(inst)
-    while True:
-        tend(inst)
+    D = max_drones()
+    L = get_world_size()
+
+    width = L // sqrt_round(D)
+    for x in range(0, L, width):
+        for y in range(0, L, width):
+            inst = create((x, y), width)
+            spawn_drone_main(inst)
 
 if __name__ == "__main__":
     test()
