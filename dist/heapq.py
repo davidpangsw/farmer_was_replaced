@@ -43,7 +43,7 @@ def _siftdown(heap, startpos, pos):
     # Follow the path to the root, moving parents down until finding a place
     # newitem fits.
     while pos > startpos:
-        parentpos = (pos - 1) >> 1
+        parentpos = (pos - 1) // 2
         parent = heap[parentpos]
         if newitem < parent:
             heap[pos] = parent
