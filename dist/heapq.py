@@ -34,7 +34,7 @@ def heapify(x):
     # or i < (n-1)/2. If n is even = 2*j, this is (2*j-1)/2 = j-1/2 so
     # j-1 is the largest, which is n//2 - 1. If n is odd = 2*j+1, this is
     # (2*j+1-1)/2 = j so j-1 is the largest, and that's again n//2-1.
-    for i in reversed(range(n // 2)):
+    for i in range(n // 2 - 1, -1, -1):
         _siftup(x, i)
 
 
@@ -73,83 +73,3 @@ def _siftup(heap, pos):
     heap[pos] = newitem
     _siftdown(heap, startpos, pos)
 
-
-def nsmallest(n, iterable, key=None):
-    if n < 0:
-        return []
-
-    it = iter(iterable)
-    result = []
-
-    if key == None:
-        for i in range(n):
-            try:
-                result.append(next(it))
-            except StopIteration:
-                return sorted(result)
-
-        heapify(result)
-        for elem in it:
-            heappushpop(result, elem)
-        result.sort()
-    else:
-        for i in range(n):
-            try:
-                elem = next(it)
-                result.append((key(elem), elem))
-            except StopIteration:
-                result.sort()
-                return [elem for (k, elem) in result]
-
-        heapify(result)
-        for elem in it:
-            k = key(elem)
-            heappushpop(result, (k, elem))
-        result.sort()
-        result = [elem for (k, elem) in result]
-
-    return result
-
-
-def nlargest(n, iterable, key=None):
-    if n < 0:
-        return []
-
-    it = iter(iterable)
-    result = []
-
-    if key == None:
-        for i in range(n):
-            try:
-                result.append(next(it))
-            except StopIteration:
-                sorted_result = sorted(result)
-                return sorted_result[::-1]
-
-        # Use negative values to create a max-heap
-        result = [(-elem, elem) for elem in result]
-        heapify(result)
-
-        for elem in it:
-            heappushpop(result, (-elem, elem))
-
-        result.sort()
-        result = [elem for (k, elem) in result]
-    else:
-        for i in range(n):
-            try:
-                elem = next(it)
-                result.append((-key(elem), elem))
-            except StopIteration:
-                result.sort()
-                return [elem for (k, elem) in result]
-
-        heapify(result)
-        for elem in it:
-            k = -key(elem)
-            heappushpop(result, (k, elem))
-
-        result.sort()
-        result = [elem for (k, elem) in result]
-
-    return result
