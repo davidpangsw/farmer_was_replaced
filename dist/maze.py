@@ -1,5 +1,5 @@
 from prototype import PREPARE, TEND, POS
-from utils import matrix_of, move_to, sqrt_round
+from utils import matrix_of, move_to, sqrt_floor
 from utils import DIRECTIONS, DIRECTION_TO_VECTOR, DIRECTION_REVERSE_MAP
 from drone import spawn_drone_main, drone_main
 

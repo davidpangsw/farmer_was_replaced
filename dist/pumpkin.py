@@ -1,5 +1,7 @@
 from prototype import PREPARE, TEND, POS
 from utils import rect_path_even, reverse_path, wait_for_seed
+from drone import spawn_drone_main
+import gbtc
 
 MIN_WATER = 5000
 MIN_WATER_LEVEL = 0.5
@@ -85,9 +87,13 @@ def test():
     D = max_drones()
     width = 6
 
-    for x in range(0, L, width):
-        for y in range(0, L, width):
-            inst = create((x, y), width)
+    for x in range(0, L - width, width):
+        for y in range(0, L - width, width):
+            i, j = x // width, y // width
+            if (i + j) % 2 == 0:
+                inst = create((x, y), width)
+            else:
+                inst = gbtc.create((x, y), (width, width))
             spawn_drone_main(inst)
 
 if __name__ == "__main__":
