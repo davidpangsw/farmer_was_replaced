@@ -42,7 +42,7 @@ def prepare(inst):
 def tend(inst):
     pos = inst[POS]
     width = inst[WIDTH]
-    move_to(pos[0] + width // 2, pos[1] + width // 2)
+    move_to((pos[0] + width // 2, pos[1] + width // 2))
 
     plant(Entities.Bush)
     substance = width * 2 ** (num_unlocked(Unlocks.Mazes) - 1)
