@@ -94,7 +94,7 @@ def test():
     width = 6 # max at 6
 
     X = 0
-    for x in range(0, L + 1- width, width):
+    for x in range(0, L + 1 - width, width):
         for y in range(0, L + 1 - width, width):
             i, j = x // width, y // width
             if (i + j) % 2 == 0:
@@ -103,7 +103,7 @@ def test():
                 inst = gbtc.create((x, y), (width, width))
             spawn_drone_main(inst)
         X = x + width
-    inst  = sunflower.create((X, 0), (L-X, L))
+    inst  = sunflower.create((X, 0), (L-X, L // 2))
     drone_main(inst)
     
     

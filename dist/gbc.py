@@ -12,24 +12,6 @@ B = Entities.Bush
 C = Entities.Carrot
 GBC = [G, B, C]
 
-def decide_to_plant(inst, poly):
-    # decide which one to plant
-    # if low on Hay, plant Grass
-    if num_items(Items.Hay) < num_items(Items.Wood):
-        return G
-    # if low on Wood, plant bush
-    elif num_items(Items.Wood) < num_items(Items.Carrot):
-        return B
-    # if low on Carrot, plant Carrot
-    elif num_items(Items.Carrot) < num_items(Items.Pumpkin):
-        return C
-    # if polyculture has suggestion, plant base on it
-    elif poly != None:
-        return poly
-    # else, randomly choose from [G, B, C]
-    else:
-        return GBC[int(random() * 3)]
-
 def prepare(inst):
     if can_harvest():
         harvest()
@@ -37,13 +19,12 @@ def prepare(inst):
     if get_ground_type() == Grounds.Soil:
         till()
         
-def tend(inst, poly=None):
+def tend(inst, to_plant):
     # We can assume the tile is either planting G,B, or C
     # In any case, it should be safe to wait until harvest
     wait_for_harvest()
 
     pos = (get_pos_x(), get_pos_y())
-    to_plant = decide_to_plant(inst, poly)
     if to_plant == G:
         grass.prepare(grass.create(pos))
     elif to_plant == B:
@@ -66,7 +47,7 @@ def test():
     inst = create((get_pos_x(), get_pos_y()))
     prepare(inst)
     while True:
-        tend(inst)
+        tend(inst, G)
 
 if __name__ == "__main__":
     test()

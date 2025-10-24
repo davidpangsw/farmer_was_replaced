@@ -17,6 +17,24 @@ POLY = "polyculture"
 PATH = "path"
 GBTCS = "matrix of grass, bush, tree, carrot"
 
+def decide_to_plant(inst, poly):
+    # decide which one to plant
+    # if low on Hay, plant Grass
+    if num_items(Items.Hay) < num_items(Items.Carrot):
+        return G
+    # if low on Wood, plant bush
+    elif num_items(Items.Wood) < num_items(Items.Carrot):
+        return B
+    # if low on Carrot, plant Carrot
+    elif num_items(Items.Carrot) < num_items(Items.Pumpkin):
+        return C
+    # if polyculture has suggestion, plant base on it
+    elif poly != None:
+        return poly
+    # else, randomly choose from [G, B, C]
+    else:
+        return GBC[int(random() * 3)]
+
 def set_polyculture(inst):
     x0, y0 = inst[POS]
     w, h = inst[SIZE]
@@ -86,7 +104,8 @@ def tend(inst):
         if (i + j) % 2 == 0:
             tree.tend(gbtcs[i][j])
         else:
-            gbc.tend(gbtcs[i][j], inst[POLY])
+            to_plant = decide_to_plant(inst, poly)
+            gbc.tend(gbtcs[i][j], to_plant)
         set_polyculture(inst)
         
         move(d)
