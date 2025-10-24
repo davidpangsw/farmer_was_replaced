@@ -1,6 +1,6 @@
 from prototype import PREPARE, TEND, POS
 from utils import rect_path_even, reverse_path, wait_for_seed
-from drone import spawn_drone_main
+from drone import spawn_drone_main, drone_main
 import sunflower
 import gbtc
 
@@ -93,16 +93,20 @@ def test():
     D = max_drones()
     width = 6 # max at 6
 
+    X = 0
     for x in range(0, L + 1- width, width):
         for y in range(0, L + 1 - width, width):
             i, j = x // width, y // width
-            if (i, j) in [(1, 0), (0, 1)]:
-                inst = sunflower.create((x, y), (width, width))
-            elif (i + j) % 2 == 0:
+            if (i + j) % 2 == 0:
                 inst = create((x, y), width)
             else:
                 inst = gbtc.create((x, y), (width, width))
             spawn_drone_main(inst)
+        X = x + width
+    inst  = sunflower.create((X, 0), (L-X, L))
+    drone_main(inst)
+    
+    
 
 if __name__ == "__main__":
     test()
