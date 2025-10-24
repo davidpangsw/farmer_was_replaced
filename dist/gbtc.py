@@ -77,9 +77,9 @@ def create(pos, size):
     return inst
 
 def prepare(inst):
+    x0, y0 = inst[POS]
     path = inst[PATH]
     gbtcs = inst[GBTCS]
-    x0, y0 = inst[POS]
     for d in path:
         x, y = get_pos_x(), get_pos_y()
         i, j = x - x0, y - y0
@@ -95,9 +95,10 @@ def prepare(inst):
 
 
 def tend(inst):
+    x0, y0 = inst[POS]
     path = inst[PATH]
     gbtcs = inst[GBTCS]
-    x0, y0 = inst[POS]
+    poly = inst[POLY]
     for d in path:
         x, y = get_pos_x(), get_pos_y()
         i, j = x - x0, y - y0

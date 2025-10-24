@@ -26,4 +26,11 @@ spawn_drone_main(gbtc.create((x, 18), (width, L-18)))
 x += width
 
 width = L-16
-drone_main(gbtc.create((x, 0), (width, L)))
+# split the remaining drones
+D = max_drones()
+d = num_drones()
+a = D - d + 1 # available drones
+height = L // a
+for i in range(a-1):
+    spawn_drone_main(gbtc.create((x, i * height), (width, height)))
+drone_main(gbtc.create((x, (a-1) * height), (width, height)))
