@@ -18,7 +18,25 @@ def prepare(inst):
 
             wait_for_seed(E, 100)
             plant(E)
+            heappush(pq, (-measure(), (get_pos_x(), get_pos_y())))
+            move(North)
+        for j in range(h):
+            move(South)
+        move(East)
 
+    for i in range(w):
+        move(West)
+
+def replant(inst):
+    x0, y0 = inst[POS]
+    w, h = inst[SIZE]
+    pq = inst[PQ]
+    for i in range(w):
+        for j in range(h):
+            if get_entity_type() == Entities.sunflower:
+                continue
+            wait_for_seed(E, 100)
+            plant(E)
             heappush(pq, (-measure(), (get_pos_x(), get_pos_y())))
             move(North)
         for j in range(h):
@@ -30,6 +48,8 @@ def prepare(inst):
 
 def tend(inst):
     pq = inst[PQ]
+    if len(pq) < 10:
+        replant(inst)
     _, pos = heappop(pq)
     move_to(pos)
 
@@ -40,8 +60,10 @@ def tend(inst):
     harvest()
 
     wait_for_seed(E, 100)
-    plant(E)
-    heappush(pq, (-measure(), (get_pos_x(), get_pos_y())))
+
+    # plant back (slow, need to wait it grow)
+    # plant(E)
+    # heappush(pq, (-measure(), (get_pos_x(), get_pos_y())))
 
 # width, height in size should be positive
 def create(pos, size):
