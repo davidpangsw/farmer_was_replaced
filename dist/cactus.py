@@ -79,7 +79,7 @@ def create_square(pos, width):
     return inst
 
 def test():
-    inst = create_square((get_pos_x(), get_pos_y()), width=10)
+    inst = create_square((get_pos_x(), get_pos_y()), 10)
     prepare(inst)
     while True:
         tend(inst)

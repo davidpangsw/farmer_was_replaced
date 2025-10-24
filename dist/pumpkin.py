@@ -76,7 +76,7 @@ def create(pos, width):
     return inst
 
 def test():
-    inst = create((get_pos_x(), get_pos_y()), width=6)
+    inst = create((get_pos_x(), get_pos_y()), 6)
     prepare(inst)
     while True:
         tend(inst)

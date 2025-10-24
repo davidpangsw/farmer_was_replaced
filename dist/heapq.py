@@ -123,7 +123,8 @@ def nlargest(n, iterable, key=None):
             try:
                 result.append(next(it))
             except StopIteration:
-                return sorted(result, reverse=True)
+                sorted_result = sorted(result)
+                return sorted_result[::-1]
 
         # Use negative values to create a max-heap
         result = [(-elem, elem) for elem in result]
