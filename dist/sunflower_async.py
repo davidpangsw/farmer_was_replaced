@@ -5,14 +5,22 @@ from drone import spawn_drone_main
 E = Entities.Sunflower
 
 CH_CTRL = "Channel of Control"
+GET_CH_CTRL = "Get Channel of Control"
 CTRL_STATE = "Control State" # None initially; -1 if planting; otherwise is the measure of petals to be collected
 CTRL_NOTIFY = "Control Notify()" # receive id that notify it has completed the job and is waiting
 CTRL_COUNT = "Control Count"
 CTRL_TOTAL = "Control Total"
 LEVEL_TO_XYS = "level to (x, y)'s"
 
+globals = {
+    CH_CTRL: {}
+}
+
+def get_ch_ctrl():
+    return globals[CH_CTRL]
+
 def wait_for_state_change(inst, prev_state):
-    ctrl = inst[CH_CTRL]
+    ctrl = inst[GET_CH_CTRL]()
     state = ctrl[CTRL_STATE]
     while state == prev_state:
         do_a_flip()
@@ -43,7 +51,7 @@ def create(pos, size, ch_ctrl):
         SIZE: size,
         PATH: rect_path_even(size),
 
-        CH_CTRL: ch_ctrl,
+        GET_CH_CTRL: get_ch_ctrl,
     }
     # measure() must be in [7, 15], so no worry
     inst[LEVEL_TO_XYS] = {
@@ -65,6 +73,7 @@ def prepare(inst):
     # x0, y0 = inst[POS]
     # w, h = inst[SIZE]
     path = inst[PATH]
+    ctrl = inst[GET_CH_CTRL]()
     for d in path:
         if can_harvest():
             harvest()
@@ -76,11 +85,11 @@ def prepare(inst):
         plant(E)
         add_measure(inst, measure(), (get_pos_x(), get_pos_y()))
         move(d)
-    notify(inst[CH_CTRL])
+    notify(ctrl)
     wait_for_state_change(inst, -1)
 
 def tend(inst):
-    ctrl = inst[CH_CTRL]
+    ctrl = inst[GET_CH_CTRL]()
     state = ctrl[CTRL_STATE]
 
     if state == -1:

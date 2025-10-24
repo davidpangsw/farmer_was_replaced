@@ -11,6 +11,7 @@ def drone_main(inst):
         tend(inst)
 
 # Note: suppose drones are threadsafe: they work concurrently, but only one at a time
+# inst is made a copy here (local variable)
 def spawn_drone_main(inst):
     def f():
         drone_main(inst)
