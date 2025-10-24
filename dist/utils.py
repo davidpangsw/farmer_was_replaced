@@ -1,3 +1,10 @@
+DIRECTIONS = [East, North, West, South]
+DIRECTION_TO_VECTOR = {
+    East: (1, 0),
+    North: (0, 1),
+    West: (-1, 0),
+    South: (0, -1),
+}
 DIRECTION_REVERSE_MAP = {
     East: West,
     North: South,
