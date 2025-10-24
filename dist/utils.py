@@ -88,8 +88,11 @@ def wait_for_seed(entity, reserve_multiplier):
         print("Warning: Cannot afford seed for {}".format(entity))
         # do_a_flip()
 
-def wait_for_harvest():
+def wait_for_harvest(watering=False, min_water_level=0.5, min_water=5000):
     while not can_harvest():
+        if watering:
+            if get_water() < min_water_level and num_items(Items.Water) > min_water:
+                use_item(Items.Water)
         # print takes 1 second, it waits like doing a flip
         print("Wait[H]")
 

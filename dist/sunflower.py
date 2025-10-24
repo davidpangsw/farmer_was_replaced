@@ -34,7 +34,7 @@ def tend(inst):
     _, pos = heappop(pq)
     move_to(pos)
 
-    wait_for_harvest()
+    wait_for_harvest(True)
     harvest()
 
     wait_for_seed(E, 100)
