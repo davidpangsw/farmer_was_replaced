@@ -91,7 +91,7 @@ def test():
     
     L = get_world_size()
     D = max_drones()
-    width = 6
+    width = 4 # max at 6
 
     for x in range(0, L + 1- width, width):
         for y in range(0, L + 1 - width, width):
