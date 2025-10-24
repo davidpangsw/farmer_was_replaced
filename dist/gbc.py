@@ -11,22 +11,17 @@ G = Entities.Grass
 B = Entities.Bush
 C = Entities.Carrot
 GBC = [G, B, C]
-MIN_ITEMS = {
-    Items.Hay:1000,
-    Items.Wood:1000,
-    Items.Carrot:1000,
-}
 
 def decide_to_plant(inst, poly):
     # decide which one to plant
     # if low on Hay, plant Grass
-    if num_items(Items.Hay) < MIN_ITEMS[Items.Hay]:
+    if num_items(Items.Hay) < num_items(Items.Wood):
         return G
     # if low on Wood, plant bush
-    elif num_items(Items.Wood) < MIN_ITEMS[Items.Wood]:
+    elif num_items(Items.Wood) < num_items(Items.Carrot):
         return B
     # if low on Carrot, plant Carrot
-    elif num_items(Items.Carrot) < MIN_ITEMS[Items.Carrot]:
+    elif num_items(Items.Carrot) < num_items(Items.Pumpkin):
         return C
     # if polyculture has suggestion, plant base on it
     elif poly != None:
