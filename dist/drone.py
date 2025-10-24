@@ -10,7 +10,8 @@ def drone_main(inst):
     while True:
         tend(inst)
 
+# Note: suppose drones are threadsafe: they work concurrently, but only one at a time
 def spawn_drone_main(inst):
     def f():
         drone_main(inst)
-    spawn_drone(f)
+    return spawn_drone(f)

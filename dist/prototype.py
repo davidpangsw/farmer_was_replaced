@@ -14,4 +14,6 @@ TEND = "tend"
 # Optional
 # size of the farm in tuple
 SIZE = "size"
+# path to cycle the farm
+PATH = "path"
 
