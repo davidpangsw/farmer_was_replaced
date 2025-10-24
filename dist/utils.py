@@ -85,7 +85,7 @@ def verify_entity_cost(entity, reserve_multiplier):
 def wait_for_seed(entity, reserve_multiplier):
     while not verify_entity_cost(entity, reserve_multiplier):
         # print takes 1 second, it waits like doing a flip
-        print("Warning: Cannot afford seed for {}".format(entity))
+        print("Warning: Cannot afford seed for " + str(entity))
         # do_a_flip()
 
 def wait_for_harvest(watering=False, min_water_level=0.5, min_water=5000):

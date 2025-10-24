@@ -1,6 +1,7 @@
 from prototype import PREPARE, TEND, POS
 from utils import rect_path_even, reverse_path, wait_for_seed
 from drone import spawn_drone_main
+import sunflower
 import gbtc
 
 MIN_WATER = 5000
@@ -90,7 +91,9 @@ def test():
     for x in range(0, L - width, width):
         for y in range(0, L - width, width):
             i, j = x // width, y // width
-            if (i + j) % 2 == 0:
+            if (i, j) == (1, 0):
+                inst = sunflower.create((x, y), (width, width))
+            elif (i + j) % 2 == 0:
                 inst = create((x, y), width)
             else:
                 inst = gbtc.create((x, y), (width, width))

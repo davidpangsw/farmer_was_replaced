@@ -12,13 +12,18 @@ clear()
 L = get_world_size()
 
 
-spawn_drone_main(sunflower.create((0, 0), (10, 2)))
-spawn_drone_main(cactus.create_square((0, 2), 10))
-spawn_drone_main(gbtc.create((0, 12), (10, L-12)))
+x = 0
+width = 10
+spawn_drone_main(cactus.create_square((x, 0), width))
+spawn_drone_main(gbtc.create((x, 10), (width, L-10)))
+x += width
 
+width = 6
+spawn_drone_main(pumpkin.create((x, 0), width))
+spawn_drone_main(sunflower.create((x, 6), (width, 6)))
+spawn_drone_main(pumpkin.create((x, 12), width))
+spawn_drone_main(gbtc.create((x, 18), (width, L-18)))
+x += width
 
-spawn_drone_main(pumpkin.create((10, 0), 6))
-spawn_drone_main(pumpkin.create((10, 6), 6))
-spawn_drone_main(pumpkin.create((10, 12), 6))
-spawn_drone_main(gbtc.create((10, 18), (6, L-18)))
-drone_main(gbtc.create((16, 0), (L-16, L)))
+width = L-16
+drone_main(gbtc.create((x, 0), (width, L)))

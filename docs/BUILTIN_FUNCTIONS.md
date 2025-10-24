@@ -161,7 +161,7 @@ Retrieves the current y-coordinate of the drone.
 ```python
 x = get_pos_x()
 y = get_pos_y()
-quick_print("Position: ({}, {})".format(x, y))
+quick_print("Position: " + (x, y))
 ```
 
 ---
@@ -444,7 +444,7 @@ cost = get_cost(Unlocks.Carrots)
 for item in cost:
     required = cost[item]
     current = num_items(item)
-    quick_print("{}: {}/{}".format(item, current, required))
+    quick_print(str(item) + ": " + current + "/" + required)
 ```
 
 ---
@@ -540,7 +540,7 @@ Logs a value to the output page without animation.
 **Example:**
 ```python
 quick_print("Starting harvest loop")
-quick_print("Position: ({}, {})".format(get_pos_x(), get_pos_y()))
+quick_print("Position: "+(get_pos_x(), get_pos_y()))
 ```
 
 ---
@@ -772,14 +772,7 @@ There are no bitwise operators. There is no "is" operator.
 Based on the game's constraints:
 
 1. **No multi-line strings**: Must use single-line strings only
-2. **No f-strings**: Use `.format()` instead
-   ```python
-   # WRONG
-   message = f"Position: {x}, {y}"
-
-   # CORRECT
-   message = "Position: {}, {}".format(x, y)
-   ```
+2. **No f-strings or format()**: Use `+` to concatenate strings
 3. **No import statements**: All built-in functions are available by default
 4. **Python-like but not Python**: This is a custom language inspired by Python
 
@@ -813,7 +806,7 @@ Based on the game's constraints:
    start = get_tick_count()
    # ... your code ...
    end = get_tick_count()
-   quick_print("Operations used: {}".format(end - start))
+   quick_print("Operations used: " + (end - start))
    ```
 
 ---

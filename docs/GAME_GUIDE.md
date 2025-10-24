@@ -202,4 +202,4 @@ For complete documentation of all available game functions, see **BUILTIN_FUNCTI
 
 # Additional Rules (Written by human, don't edit this part)
 - No multiple line string allowed
-- No f-strings allowed (use .format() instead)
+- No f-strings allowed, no .format() allowed(). Use `+` to concatenate strings
