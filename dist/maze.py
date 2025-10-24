@@ -68,7 +68,7 @@ def test():
     D = max_drones()
     L = get_world_size()
 
-    width = L // sqrt_round(D)
+    width = L // sqrt_floor(D)
     for x in range(0, L, width):
         for y in range(0, L, width):
             inst = create((x, y), width)

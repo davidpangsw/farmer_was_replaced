@@ -17,6 +17,8 @@ spawn_drone_main(cactus.create_square((0, 2), 10))
 spawn_drone_main(gbtc.create((0, 12), (10, L-12)))
 
 
-spawn_drone_main(pumpkin.create((11, 0), 6))
-spawn_drone_main(gbtc.create((11, 6), (6, L-6)))
-drone_main(gbtc.create((17, 0), (L-16, L)))
+spawn_drone_main(pumpkin.create((10, 0), 6))
+spawn_drone_main(pumpkin.create((10, 6), 6))
+spawn_drone_main(pumpkin.create((10, 12), 6))
+spawn_drone_main(gbtc.create((10, 18), (6, L-6)))
+drone_main(gbtc.create((16, 0), (L-16, L)))

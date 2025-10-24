@@ -130,7 +130,7 @@ def move_to(dest):
     move_to_x(L, src[0], dest[0])
     move_to_y(L, src[1], dest[1])
 
-def sqrt_round(x):
+def sqrt_floor(x):
     for i in range(x):
         if i * i > x:
             return i-1
