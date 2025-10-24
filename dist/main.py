@@ -15,10 +15,8 @@ L = get_world_size()
 x = 0
 width = 10
 spawn_drone_main(cactus.create_square((x, 0), width))
-spawn_drone_main(gbtc.create((x, 10), (5, 11)))
-spawn_drone_main(gbtc.create((x+5, 10), (5, 11)))
-spawn_drone_main(gbtc.create((x, 21), (5, 11)))
-spawn_drone_main(gbtc.create((x+5, 21), (5, 11)))
+for i in range(11):
+    spawn_drone_main(gbtc.create((x, 10 + 2 * i), (10, 2)))
 x += width
 
 width = 6
