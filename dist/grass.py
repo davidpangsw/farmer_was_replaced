@@ -20,6 +20,7 @@ def create(pos):
     return inst
 
 def test():
+    clear()
     inst = create((get_pos_x(), get_pos_y()))
     prepare(inst)
     while True:

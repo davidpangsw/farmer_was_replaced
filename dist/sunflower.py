@@ -52,6 +52,7 @@ def create(pos, size):
     return inst
 
 def test():
+    clear()
     inst = create((get_pos_x(), get_pos_y()), (10, 8))
     prepare(inst)
     while True:
