@@ -1,6 +1,8 @@
 from prototype import PREPARE, TEND, POS, SIZE
 from utils import square_path_even
 from drone import spawn_drone_main
+import sunflower
+import gbtc
 
 E = Entities.Cactus
 IS_GROWN = "is_grown"
