@@ -65,14 +65,18 @@ def create(pos, width):
 
 def test():
     clear()
-    D = max_drones()
-    L = get_world_size()
-
-    width = L // sqrt_floor(D)
+    L = 32
+    width = 6
     for x in range(0, L, width):
+        move_to((x, 0))
         for y in range(0, L, width):
             inst = create((x, y), width)
+            for _ in range(width - 1):
+                move(North)
             spawn_drone_main(inst)
+            move(North)
+        for _ in range(width):
+            move(East)
 
 if __name__ == "__main__":
     test()
