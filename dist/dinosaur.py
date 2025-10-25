@@ -13,12 +13,10 @@ APPLE_POS = "apple position"
 
 # max_size must have even width
 def decide_path(src, dest, max_size, min_len):
-    if src == dest: # only when apple is spawned?
-        return [East, North, West, South]
     W, H = max_size
     w, h = dest[0] - src[0] + 1, dest[1] - src[1] + 1
 
-    while not (w * h >= min_len and w >= 2 and w % 2 == 1) and w < W:
+    while not (w * h >= min_len and w >= 2 and w % 2 == 0) and w < W:
         w += 1
     while not (w * h >= min_len and h >= 2) and h < H:
         h += 1
@@ -33,7 +31,7 @@ def tend(inst):
     cur_pos = get_pos_x(), get_pos_y()
     apple_pos = inst[APPLE_POS]
     size = inst[SIZE]
-    path = decide_path(cur_pos, apple_pos, size, inst[LENGTH] + 1)
+    path = decide_path(cur_pos, apple_pos, size, inst[LENGTH] * 2 + 1)
     path += inst[FULL_PATH] # add a full path to "resolve" current path, otherwise it might collide
     for d in path:
         entity = get_entity_type() # see if it is apple
