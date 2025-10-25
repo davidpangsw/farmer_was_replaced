@@ -36,6 +36,9 @@ def search(inst):
     dfs(size, visited, get_pos_x(), get_pos_y())
 
 def prepare(inst):
+    pos = inst[POS]
+    width = inst[WIDTH]
+
     move_to((pos[0] + width // 2, pos[1] + width // 2))
     if can_harvest():
         harvest()
