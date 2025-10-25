@@ -74,8 +74,8 @@ def test():
     clear()
     L = 32
     width = 6
-    for x in range(0, L, width):
-        for y in range(0, L, width):
+    for x in range(0, L + 1 - width, width):
+        for y in range(0, L + 1 - width, width):
             inst = create((x, y), width)
             spawn_drone_main(inst)
             move(North)
