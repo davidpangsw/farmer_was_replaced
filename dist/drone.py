@@ -7,8 +7,9 @@ def drone_main(inst):
 
     move_to(pos)
     prepare(inst)
-    while True:
-        tend(inst)
+    stop = None
+    while stop == None:
+        stop = tend(inst)
 
 # Note: suppose drones are threadsafe: they work concurrently, but only one at a time
 # inst is made a copy here (local variable)

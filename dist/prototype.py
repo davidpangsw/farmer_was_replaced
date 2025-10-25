@@ -16,4 +16,4 @@ TEND = "tend"
 SIZE = "size"
 # path to cycle the farm
 PATH = "path"
-
+WIDTH = "width"

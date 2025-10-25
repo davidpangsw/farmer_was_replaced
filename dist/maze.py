@@ -33,16 +33,16 @@ def search(inst):
     width = inst[WIDTH]
     size = (width, width)
     visited = matrix_of(size, False)
-    dfs(size, visited, 0, 0)
+    dfs(size, visited, get_pos_x(), get_pos_y())
 
 def prepare(inst):
+    move_to((pos[0] + width // 2, pos[1] + width // 2))
     if can_harvest():
         harvest()
 
 def tend(inst):
     pos = inst[POS]
     width = inst[WIDTH]
-    move_to((pos[0] + width // 2, pos[1] + width // 2))
 
     plant(Entities.Bush)
     substance = width * 2 ** (num_unlocked(Unlocks.Mazes) - 1)
@@ -50,7 +50,7 @@ def tend(inst):
 
     search(inst)
     harvest()
-    move_to(pos)
+    move_to((pos[0] + width // 2, pos[1] + width // 2))
 
 def create(pos, width):
     inst = {
