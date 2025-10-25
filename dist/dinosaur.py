@@ -44,10 +44,11 @@ def test():
     clear()
     
     # only one dinosaur is allowed
-    L = get_world_size()
+    L = 8
+    L = set_world_size(L)
     D = max_drones()
     pos = 0, 0
-    size = (8, 4)
+    size = (L, L)
 
     width, height = size
     inst = create(pos, size)
