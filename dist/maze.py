@@ -30,12 +30,16 @@ def dfs(size, visited, i, j):
 
 
 def search(inst):
+    pos = inst[POS]
     width = inst[WIDTH]
+
     size = (width, width)
     visited = matrix_of(size, False)
-    dfs(size, visited, get_pos_x(), get_pos_y())
+    dfs(size, visited, get_pos_x() - pos[0], get_pos_y() - pos[1])
 
 def prepare(inst):
+    for _ in range(10):
+        print("Waiting...")
     pos = inst[POS]
     width = inst[WIDTH]
 
@@ -71,15 +75,11 @@ def test():
     L = 32
     width = 6
     for x in range(0, L, width):
-        move_to((x, 0))
         for y in range(0, L, width):
             inst = create((x, y), width)
-            for _ in range(width - 1):
-                move(North)
             spawn_drone_main(inst)
             move(North)
-        for _ in range(width):
-            move(East)
+        move(East)
 
 if __name__ == "__main__":
     test()
