@@ -15,14 +15,12 @@ def decide_path(src, dest, max_size, min_len):
     if src == dest: # only when apple is spawned?
         return [East, North, West, South]
     W, H = max_size
-    w, h = dest[0] - src[0], dest[1] - src[1]
+    w, h = dest[0] - src[0] + 1, dest[1] - src[1] + 1
 
-    while w * h < min_len and w < W:
+    while not (w * h >= min_len and w % 2 == 1) and w < W:
         w += 1
-    while w * h < min_len and h < H:
+    while not (w * h >= min_len and h >= 2) and h < H:
         h += 1
-    if w % 2 == 1:
-        w += 1 # this is safe, because max_size must have even width
     return rect_path_even((w, h))
     
 
