@@ -1,7 +1,4 @@
-
-
 def generate_snake_path(width, height, curl_start_x):
-    
     path = []
 
     # Step 1: Move East to (width-1, 0)
@@ -47,7 +44,6 @@ def generate_snake_path(width, height, curl_start_x):
 
 
 def calculate_dimensions(apple_x, apple_y, world_size, snake_length):
-    
     L = world_size
 
     # Height is always L (we use full height)
@@ -88,7 +84,6 @@ def calculate_dimensions(apple_x, apple_y, world_size, snake_length):
 
 
 def decide_path(apple_pos, world_size, snake_length):
-    
     apple_x, apple_y = apple_pos
 
     # Calculate minimum dimensions needed
