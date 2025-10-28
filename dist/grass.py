@@ -1,5 +1,4 @@
 from prototype import PREPARE, TEND, POS
-from dev import Entities, Grounds, can_harvest, harvest, get_ground_type, till, clear, get_pos_x, get_pos_y
 
 E = Entities.Grass
 

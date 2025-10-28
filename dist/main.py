@@ -5,7 +5,6 @@ import pumpkin
 from prototype import POS, PREPARE, TEND
 from utils import move_to
 from drone import spawn_drone_main, drone_main
-from dev import clear, get_world_size, max_drones, num_drones
 
 
 clear()

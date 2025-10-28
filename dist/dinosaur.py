@@ -4,7 +4,6 @@ from drone import spawn_drone_main, drone_main
 from dinosaur_algo import decide_path
 import sunflower
 import gbtc
-from dev import (
     Entities, Hats,
     clear, get_pos_x, get_pos_y, get_entity_type, measure, move,
     change_hat, quick_print, max_drones, set_world_size

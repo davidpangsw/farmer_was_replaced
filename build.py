@@ -60,7 +60,7 @@ def remove_multiline_strings_and_dev_imports(file_path):
 
     for line in lines:
         # Skip lines that import from dev
-        if re.match(r'^\s*from\s+dev(\.|$)', line) or re.match(r'^\s*import\s+dev(\.|$|\s)', line):
+        if re.match(r'^\s*from\s+dev(\s|\.)', line) or re.match(r'^\s*import\s+dev(\.|$|\s)', line):
             continue
         filtered_lines.append(line)
 

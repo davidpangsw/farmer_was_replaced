@@ -1,6 +1,5 @@
 from prototype import PREPARE, TEND, POS
 from utils import wait_for_seed
-from dev import Entities, Grounds, can_harvest, harvest, get_ground_type, till, plant, clear, get_pos_x, get_pos_y
 
 E = Entities.Carrot
 def prepare(inst):

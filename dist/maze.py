@@ -2,7 +2,6 @@ from prototype import PREPARE, TEND, POS
 from utils import matrix_of, move_to, sqrt_floor
 from utils import DIRECTIONS, DIRECTION_TO_VECTOR, DIRECTION_REVERSE_MAP
 from drone import spawn_drone_main, drone_main
-from dev import (
     Entities, Items, Unlocks, North, East,
     get_entity_type, can_move, move, get_pos_x, get_pos_y,
     can_harvest, harvest, plant, use_item, num_unlocked, clear

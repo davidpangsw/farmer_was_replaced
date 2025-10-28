@@ -1,5 +1,4 @@
 from prototype import PREPARE, TEND, POS
-from dev import Entities, can_harvest, harvest, plant, clear, get_pos_x, get_pos_y
 
 E = Entities.Tree
 

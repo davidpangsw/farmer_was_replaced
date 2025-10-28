@@ -1,6 +1,5 @@
 from utils import move_to, sqrt_floor
 from prototype import POS, PREPARE, TEND
-from dev import spawn_drone
 def drone_main(inst):
     pos = inst[POS]
     prepare = inst[PREPARE]

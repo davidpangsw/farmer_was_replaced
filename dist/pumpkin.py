@@ -3,7 +3,6 @@ from utils import rect_path_even, reverse_path, wait_for_seed
 from drone import spawn_drone_main, drone_main
 import sunflower
 import gbtc
-from dev import (
     Entities, Grounds, Items,
     can_harvest, harvest, get_ground_type, till, plant, move,
     get_entity_type, use_item, num_items, get_water, quick_print,
