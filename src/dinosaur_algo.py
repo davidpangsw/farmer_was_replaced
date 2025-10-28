@@ -36,8 +36,7 @@ First of all, this is a classic game setup:
 #     - After reaching the apple, simply curl back to the (0, 0) as usual
 # Write a function that reads input and decides the path, returning an array of directions
 """
-from globals.constants import East, North, West, South
-
+from dev.constants import East, North, West, South
 
 def generate_snake_path(width, height, curl_start_x):
     """

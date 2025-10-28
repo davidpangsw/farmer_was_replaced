@@ -1,6 +1,4 @@
 
-from globals.constants import East, North, West, South
-
 
 def generate_snake_path(width, height, curl_start_x):
     
