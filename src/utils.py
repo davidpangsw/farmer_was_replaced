@@ -1,3 +1,4 @@
+from dev import East, North, West, South
 DIRECTIONS = [East, North, West, South]
 DIRECTION_TO_VECTOR = {
     East: (1, 0),

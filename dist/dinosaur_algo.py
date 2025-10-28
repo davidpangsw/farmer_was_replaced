@@ -1,14 +1,17 @@
 
+from dev import East, North, West, South
 
 def generate_snake_path(width, height, curl_start_x):
     
     path = []
 
     # Step 1: Move East to (width-1, 0)
-    path.extend([East] * (width - 1))
+    for _ in range(width - 1):
+        path.append(East)
 
     # Step 2: Move North to (width-1, height-1)
-    path.extend([North] * (height - 1))
+    for _ in range(height - 1):
+        path.append(North)
 
     # Step 3: Move West by 1 to (width-2, height-1)
     path.append(West)
@@ -16,7 +19,8 @@ def generate_snake_path(width, height, curl_start_x):
     # Step 4: Move West to curl start position (curl_start_x, height-1)
     # We're at (width-2, height-1), need to reach (curl_start_x, height-1)
     west_moves = (width - 2) - curl_start_x
-    path.extend([West] * west_moves)
+    for _ in range(west_moves):
+        path.append(West)
 
     # Step 5: Do the curling pattern
     # Number of curls k = curl_start_x / 2
@@ -25,17 +29,20 @@ def generate_snake_path(width, height, curl_start_x):
 
     for _ in range(k):
         # South by d
-        path.extend([South] * d)
+        for _ in range(d):
+            path.append(South)
         # West by 1
         path.append(West)
         # North by d
-        path.extend([North] * d)
+        for _ in range(d):
+            path.append(North)
         # West by 1
         path.append(West)
 
     # Step 6: Now at (0, height-1)
     # Step 7: Move South to (0, 0)
-    path.extend([South] * (height - 1))
+    for _ in range(height - 1):
+        path.append(South)
 
     return path
 
@@ -51,7 +58,10 @@ def calculate_dimensions(apple_x, apple_y, world_size, snake_length):
     # such that the path can accommodate snake_length when reaching apple
 
     # Try widths from apple_x+1 up to L, ensuring even width
-    min_width = apple_x + 2 if (apple_x + 2) % 2 == 0 else apple_x + 3
+    if (apple_x + 2) % 2 == 0:
+        min_width = apple_x + 2
+    else:
+        min_width = apple_x + 3
 
     for width in range(min_width, L + 1, 2):  # Step by 2 to keep even
         # For this width, try curl_start positions from width-1 down to 0 (even only)

@@ -2,7 +2,7 @@ The language is a subset of python, which means some syntax doesn't work. Here i
 
 
 ```py
-# doesn't work, use a normal for loop to append, or use the method written in utils
+# doesn't work, you cannot multiply an array with a number. use a normal for loop to append, or use the method written in utils
 [East] * (width - 1)
 
 # doesn't work, use normal if/else
