@@ -1,0 +1,12 @@
+class Entities:
+    Grass = "Grass"
+    Sunflower = "Sunflower"
+    sunflower = "sunflower"
+    Cactus = "Cactus"
+    Pumpkin = "Pumpkin"
+    Dead_Pumpkin = "Dead_Pumpkin"
+    Bush = "Bush"
+    Tree = "Tree"
+    Carrot = "Carrot"
+    Treasure = "Treasure"
+    Apple = "Apple"

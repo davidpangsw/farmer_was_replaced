@@ -1,0 +1,2 @@
+class Unlocks:
+    Mazes = "Mazes"
