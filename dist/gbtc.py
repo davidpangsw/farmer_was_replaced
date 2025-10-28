@@ -8,6 +8,10 @@ import tree
 import carrot
 import gbc
 from utils import wait_for_harvest, matrix_of, rect_path_even, matrix
+    Entities, Items,
+    num_items, random, get_companion, quick_print,
+    get_pos_x, get_pos_y, move, clear
+)
 
 G = Entities.Grass
 B = Entities.Bush

@@ -4,6 +4,10 @@ from drone import spawn_drone_main, drone_main
 from dinosaur_algo import decide_path
 import sunflower
 import gbtc
+    Entities, Hats,
+    clear, get_pos_x, get_pos_y, get_entity_type, measure, move,
+    change_hat, quick_print, max_drones, set_world_size
+)
 
 clear()
 
@@ -17,11 +21,12 @@ def prepare(inst):
     inst[APPLE_POS] = get_pos_x(), get_pos_y()
 
 def tend(inst):
-    cur_pos = get_pos_x(), get_pos_y()
+    # cur_pos = get_pos_x(), get_pos_y()
+    pos = inst[POS]
     apple_pos = inst[APPLE_POS]
     size = inst[SIZE]
-    path = decide_path(apple_pos, size, inst[LENGTH])
-    path += inst[FULL_PATH] # add a full path to "resolve" current path, otherwise it might collide
+    path = decide_path(pos, apple_pos, size, inst[LENGTH])
+    # path += inst[FULL_PATH] # add a full path to "resolve" current path, otherwise it might collide
     for d in path:
         entity = get_entity_type() # see if it is apple
         if entity == Entities.Apple:

@@ -1,6 +1,10 @@
 from prototype import PREPARE, TEND, POS, SIZE
 from utils import wait_for_seed, wait_for_harvest, move_to, rect_path_even
 from heapq import heappop, heappush
+    Entities, Grounds, Items, Debug,
+    can_harvest, harvest, get_ground_type, till, plant, measure,
+    get_pos_x, get_pos_y, move, get_entity_type, use_item, clear
+)
 
 E = Entities.Sunflower
 PQ = "priority queue"

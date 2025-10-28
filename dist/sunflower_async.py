@@ -1,6 +1,10 @@
 from prototype import PREPARE, TEND, POS, SIZE, PATH
 from utils import wait_for_seed, wait_for_harvest, move_to, rect_path_even
 from drone import spawn_drone_main
+    Entities, Grounds, Items,
+    can_harvest, harvest, get_ground_type, till, plant, measure,
+    get_pos_x, get_pos_y, move, get_entity_type, use_item, quick_print, clear
+)
 
 E = Entities.Sunflower
 
