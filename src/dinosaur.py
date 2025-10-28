@@ -28,7 +28,7 @@ def tend(inst):
         entity = get_entity_type() # see if it is apple
         if entity == Entities.Apple:
             inst[APPLE_POS] = measure()
-            move(d) # must be success
+            move(d) # must be success, because if the entity is an apple, it means we are at pos, and no tails are out there
             inst[LENGTH] += 1
         else:
             success = move(d)
@@ -38,7 +38,7 @@ def tend(inst):
                 change_hat(Hats.Dinosaur_Hat)
                 
                 inst[APPLE_POS] = measure()
-                move(d) # must be success
+                move(d) # must be success, brand new game with apple under the drone
                 inst[LENGTH] = 1
 
 def create(pos, size):
