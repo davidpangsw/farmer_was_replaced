@@ -3,11 +3,7 @@ from utils import square_path_even
 from drone import spawn_drone_main
 import sunflower
 import gbtc
-from dev import (
-    Entities, Grounds, North, East,
-    can_harvest, harvest, get_ground_type, till, plant, measure,
-    get_pos_x, get_pos_y, move, swap, quick_print, clear, get_world_size, max_drones
-)
+from dev import Entities, Grounds, North, East, can_harvest, harvest, get_ground_type, till, plant, measure, get_pos_x, get_pos_y, move, swap, quick_print, clear, get_world_size, max_drones
 
 E = Entities.Cactus
 IS_GROWN = "is_grown"
