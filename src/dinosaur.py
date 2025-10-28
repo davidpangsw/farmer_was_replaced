@@ -22,11 +22,12 @@ def prepare(inst):
     inst[APPLE_POS] = get_pos_x(), get_pos_y()
 
 def tend(inst):
-    cur_pos = get_pos_x(), get_pos_y()
+    # cur_pos = get_pos_x(), get_pos_y()
+    pos = inst[POS]
     apple_pos = inst[APPLE_POS]
     size = inst[SIZE]
-    path = decide_path(apple_pos, size, inst[LENGTH])
-    path += inst[FULL_PATH] # add a full path to "resolve" current path, otherwise it might collide
+    path = decide_path(pos, apple_pos, size, inst[LENGTH])
+    # path += inst[FULL_PATH] # add a full path to "resolve" current path, otherwise it might collide
     for d in path:
         entity = get_entity_type() # see if it is apple
         if entity == Entities.Apple:
