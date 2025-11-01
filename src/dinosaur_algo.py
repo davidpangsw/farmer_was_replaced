@@ -10,7 +10,7 @@ First of all, this is a classic game setup:
 """
 from utils import ceildiv
 from dev import get_world_size
-from path_utils import up, down, left, right, hamilton
+from path_utils import up, down, left, right, hamilton, hamilton_2
 
 
 def generate_snake_path(size):
@@ -29,7 +29,7 @@ def generate_snake_path(size):
 
 
 def decide_path(pos, apple_pos, size, snake_length):
-    return hamilton(size)
+    return hamilton_2(size)
     L = get_world_size()
     ax, ay = apple_pos[0] - pos[0], apple_pos[1] - pos[1] # note: can be negative
     ax, ay = ax % L, ay % L
