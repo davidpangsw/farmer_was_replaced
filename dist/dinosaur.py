@@ -25,7 +25,7 @@ def tend(inst):
     size = inst[SIZE]
     path = decide_path(pos, apple_pos, size, inst[LENGTH])
 
-    debug = get_pos_x(), get_pos_y()
+    # debug = get_pos_x(), get_pos_y()
     index = 0
     for d in path:
         entity = get_entity_type() # see if it is apple

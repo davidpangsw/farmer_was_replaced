@@ -27,7 +27,7 @@ def generate_snake_path(size):
 
     return path
 
-
+path_mem = {}
 def decide_path(pos, apple_pos, size, snake_length):
     # return hamilton_2(size)
     ax, ay = apple_pos[0] - pos[0], apple_pos[1] - pos[1]
@@ -50,6 +50,9 @@ def decide_path(pos, apple_pos, size, snake_length):
             w = ax + 2 * k
         else:
             w = ax + 2 * k + 1
+    w = min(w, L)
     quick_print([pos, apple_pos, size, snake_length, w, h])
-    return hamilton_2((min(w, L), h))
+    if (w, h) not in path_mem:
+        path_mem[(w, h)] = hamilton_2(w, h)
+    return path_mem[(w, h)]
     
