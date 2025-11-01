@@ -151,26 +151,6 @@ def sqrt_floor(x):
 #         result.append(row)
 #     return result
 
-def up(n):
-    arr = []
-    for _ in range(n):
-        arr.append(North)
-    return arr
-def down(n):
-    arr = []
-    for _ in range(n):
-        arr.append(South)
-    return arr
-def left(n):
-    arr = []
-    for _ in range(n):
-        arr.append(West)
-    return arr
-def right(n):
-    arr = []
-    for _ in range(n):
-        arr.append(East)
-    return arr
 
 # ceiling division
 def ceildiv(a, b):

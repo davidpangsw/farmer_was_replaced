@@ -6,10 +6,12 @@ First of all, this is a classic game setup:
 - Apples randomly generated on the grid one by one, each time the snake eats an apple (moving from an apple grid to another grid), its length is grown by 1, and the apple is consumed.
 - The algorithm aims to eat as many apples as possible, without colliding with snake's body.
 
-- Assume the world is wrapping (torus world)
 
 """
-from utils import up, down, right, ceildiv
+from utils import up, down, left, right, ceildiv
+from dev import get_world_size
+from path_utils import HAMILTON
+
 
 def generate_snake_path(size):
     width, height = size
@@ -25,7 +27,10 @@ def generate_snake_path(size):
 
     return path
 
+
 def decide_path(pos, apple_pos, world_size, snake_length):
+    return HAMILTON
+
     L = world_size
     ax, ay = apple_pos[0] - pos[0], apple_pos[1] - pos[1] # note: can be negative
     ax, ay = ax % L, ay % L
