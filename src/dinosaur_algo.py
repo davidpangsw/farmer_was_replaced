@@ -9,7 +9,7 @@ First of all, this is a classic game setup:
 
 """
 from utils import ceildiv
-from dev import get_world_size, min, debug_print
+from dev import get_world_size, min, quick_print
 from path_utils import up, down, left, right, hamilton, hamilton_2
 
 
@@ -50,6 +50,6 @@ def decide_path(pos, apple_pos, size, snake_length):
             w = ax + 2 * k
         else:
             w = ax + 2 * k + 1
-    debug_print([pos, apple_pos, size, snake_length, w, h])
+    quick_print([pos, apple_pos, size, snake_length, w, h])
     return hamilton((min(w, L), h))
     

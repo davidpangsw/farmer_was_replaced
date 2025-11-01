@@ -40,6 +40,6 @@ def decide_path(pos, apple_pos, size, snake_length):
             w = ax + 2 * k
         else:
             w = ax + 2 * k + 1
-    debug_print([pos, apple_pos, size, snake_length, w, h])
+    quick_print([pos, apple_pos, size, snake_length, w, h])
     return hamilton((min(w, L), h))
     

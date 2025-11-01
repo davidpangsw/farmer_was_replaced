@@ -15,8 +15,8 @@ APPLE_POS = "apple position"
 
 def prepare(inst):
     change_hat(Hats.Dinosaur_Hat)
-    # apple at the bottom, length is already 2
-    inst[LENGTH] = 2
+    # apple under the drone
+    inst[LENGTH] = 1
     inst[APPLE_POS] = measure()
 
 def tend(inst):
@@ -37,7 +37,7 @@ def tend(inst):
         else:
             success = move(d)
             if not success:
-                if LENGTH < size[0] * size[1]:
+                if inst[LENGTH] < size[0] * size[1]:
                     quick_print("Error: " + index)
                 change_hat(Hats.Gold_Hat)
                 wait_for_seed(Entities.Apple, 100)
