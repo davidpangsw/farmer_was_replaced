@@ -1,6 +1,6 @@
 
 from utils import ceildiv
-from path_utils import up, down, left, right, HAMILTON
+from path_utils import up, down, left, right, hamilton
 
 
 def generate_snake_path(size):
@@ -19,9 +19,9 @@ def generate_snake_path(size):
 
 
 def decide_path(pos, apple_pos, world_size, snake_length):
-    return HAMILTON
 
     L = world_size
+    return hamilton(L)
     ax, ay = apple_pos[0] - pos[0], apple_pos[1] - pos[1] # note: can be negative
     ax, ay = ax % L, ay % L
     length = snake_length
