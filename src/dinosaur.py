@@ -25,6 +25,9 @@ def tend(inst):
     apple_pos = inst[APPLE_POS]
     size = inst[SIZE]
     path = decide_path(pos, apple_pos, size, inst[LENGTH])
+
+    debug = get_pos_x(), get_pos_y()
+    index = 0
     for d in path:
         entity = get_entity_type() # see if it is apple
         if entity == Entities.Apple:
@@ -34,6 +37,8 @@ def tend(inst):
         else:
             success = move(d)
             if not success:
+                if LENGTH < size[0] * size[1]:
+                    quick_print("Error: " + index)
                 change_hat(Hats.Gold_Hat)
                 wait_for_seed(Entities.Apple, 100)
                 change_hat(Hats.Dinosaur_Hat)
@@ -41,6 +46,7 @@ def tend(inst):
                 inst[APPLE_POS] = measure()
                 move(d) # must be success, brand new game with apple under the drone
                 inst[LENGTH] = 2
+        index += 1
 
 def create(pos, size):
     width, height = size
