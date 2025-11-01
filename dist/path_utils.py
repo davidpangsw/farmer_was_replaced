@@ -75,8 +75,9 @@ def hamilton_2(size):
     if w % 2 == 1:
         quick_print("Warning: Cannot create hamilton cycle with odd w. Added one")
         w += 1
-    path = right(w - 1)
-    path += up(h - 1)
-    path += snake((w - 2, h - 1))
-    path += down(h - 1)
+    path = right(w - 1) # (w - 1, 0)
+    path += up(h - 1) # (w - 1, h - 1)
+    path += left(1) # (w - 2, h - 1)
+    path += snake_opposite((w - 2, h - 1)) # (0, h - 1)
+    path += down(h - 1) # (1, 0)
     return path
