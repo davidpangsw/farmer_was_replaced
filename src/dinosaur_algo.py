@@ -37,6 +37,7 @@ def decide_path(pos, apple_pos, size, snake_length):
 
     if ay == 0: # treated as (0, 1), handle exceptional case when snake too short
         k = ceildiv(l - 1, 2 * (h - 1))
+        k = min(k, 1)
         w = 2 * k
         if ax >= w:
             w = ax
@@ -45,6 +46,7 @@ def decide_path(pos, apple_pos, size, snake_length):
         return hamilton((min(w, L), h))
     else:
         k = ceildiv(l - ay, 2 * (h - 1))
+        k = min(k, 1)
         if ax % 2 == 0:
             w = ax + 2 * k
         else:
