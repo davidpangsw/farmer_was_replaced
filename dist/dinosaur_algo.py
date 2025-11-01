@@ -25,12 +25,19 @@ def decide_path(pos, apple_pos, size, snake_length):
     l = snake_length
     L = get_world_size()
 
-    if ay == 0: # reset as (0, 1)
-        ax, ay = 0, 1
-
-    k = ceildiv(l - ay, 2 * (h - 1))
-    if ax % 2 == 0:
-        return hamilton((min(ax + 2*k, L), h))
+    if ay == 0: # treated as (0, 1), handle exceptional case when snake too short
+        k = ceildiv(l - 1, 2 * (h - 1))
+        w = 2 * k
+        if ax >= w:
+            w = ax
+            if w % 2 == 1:
+                w += 1
+        return hamilton((min(w, L), h))
     else:
-        return hamilton((min(ax + 2*k +1, L), h))
+        k = ceildiv(l - ay, 2 * (h - 1))
+        if ax % 2 == 0:
+            w = ax + 2 * k
+        else:
+            w = ax + 2 * k + 1
+        return hamilton((min(w, L), h))
     
