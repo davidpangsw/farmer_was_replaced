@@ -149,3 +149,8 @@ def sqrt_floor(x):
 #             row.append((i, j), (x, y), grid_size)
 #         result.append(row)
 #     return result
+
+
+# ceiling division
+def ceildiv(a, b):
+    return -(a // -b)

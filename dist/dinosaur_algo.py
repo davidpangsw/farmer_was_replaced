@@ -1,60 +1,44 @@
 
+from utils import ceildiv
+from path_utils import up, down, left, right, HAMILTON
+
 
 def generate_snake_path(size):
     width, height = size
     path = []
 
-    # Step 1: Move East to (width-1, 0)
-    for _ in range(width - 1):
-        path.append(East)
+    path += up(height - 1)
 
-    # Step 2: Move North to (width-1, height-1)
-    for _ in range(height - 1):
-        path.append(North)
-
-    # Step 3: Move West by 1 to (width-2, height-1)
-    path.append(West)
-
-    # Step 5: Do the curling pattern
-    d = height - 2
-    k = (width / 2) // d
-
-    for _ in range(k):
-        # South by d
-        for _ in range(d):
-            path.append(South)
-        # West by 1
-        path.append(West)
-        # North by d
-        for _ in range(d):
-            path.append(North)
-        # West by 1
-        path.append(West)
-
-    # Step 6: Now at (0, height-1)
-    # Step 7: Move South to (0, 0)
-    for _ in range(height - 1):
-        path.append(South)
+    for x in range(width // 2):
+        path += up(height - 1)
+        path += right(1)
+        path += down(height -1)
+        path += right(1)
 
     return path
 
 
-def calculate_dimensions(pos, apple_pos, size, snake_length):
-    W, H = size
-    ax, ay = (apple_pos[0] - pos[0], apple_pos[1] - pos[1])
+def decide_path(pos, apple_pos, world_size, snake_length):
+    return HAMILTON
+
+    L = world_size
+    ax, ay = apple_pos[0] - pos[0], apple_pos[1] - pos[1] # note: can be negative
+    ax, ay = ax % L, ay % L
     length = snake_length
 
-    height = H - 1
+    height = L
+    width = ceildiv(length, height)
+    if width % 2 == 1:
+        width += 1
 
-    area = length + (ay - 1)
-    q, r = area // height, area % height
-    if r != 0:
-        q += 1
-    width = q
-    width += ax - 1
-
-    return width, height
-
-def decide_path(pos, apple_pos, size, snake_length):
-    width, height = calculate_dimensions(pos, apple_pos, size, snake_length)
-    return generate_snake_path(width, height)
+    if ax > width:
+        # at (0, 0)
+        path = right(ax + 1 - width) # (ax + 1 - width, 0)
+        path += generate_snake_path((width, height)) # (ax + 1, 0)
+    else: # ax <= width
+        width = ax + 1
+        if width % 2 == 1:
+            width += 1
+        path = generate_snake_path((width, height))
+    return path
+    

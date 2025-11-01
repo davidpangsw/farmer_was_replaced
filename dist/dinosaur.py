@@ -22,12 +22,11 @@ def tend(inst):
     apple_pos = inst[APPLE_POS]
     size = inst[SIZE]
     path = decide_path(pos, apple_pos, size, inst[LENGTH])
-    # path += inst[FULL_PATH] # add a full path to "resolve" current path, otherwise it might collide
     for d in path:
         entity = get_entity_type() # see if it is apple
         if entity == Entities.Apple:
             inst[APPLE_POS] = measure()
-            move(d) # must be success
+            move(d) # must be success, because if the entity is an apple, it means we are at pos, and no tails are out there
             inst[LENGTH] += 1
         else:
             success = move(d)
@@ -37,8 +36,8 @@ def tend(inst):
                 change_hat(Hats.Dinosaur_Hat)
                 
                 inst[APPLE_POS] = measure()
-                move(d) # must be success
-                inst[LENGTH] = 1
+                move(d) # must be success, brand new game with apple under the drone
+                inst[LENGTH] = 2
 
 def create(pos, size):
     width, height = size
@@ -65,7 +64,6 @@ def test():
     # only one dinosaur is allowed
     L = 8
     set_world_size(L)
-    D = max_drones()
     pos = 0, 0
     size = (L, L)
 

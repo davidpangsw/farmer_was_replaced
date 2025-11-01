@@ -8,9 +8,9 @@ First of all, this is a classic game setup:
 
 
 """
-from utils import up, down, left, right, ceildiv
+from utils import ceildiv
 from dev import get_world_size
-from path_utils import HAMILTON
+from path_utils import up, down, left, right, HAMILTON
 
 
 def generate_snake_path(size):
