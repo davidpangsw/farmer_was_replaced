@@ -14,7 +14,9 @@ APPLE_POS = "apple position"
 
 def prepare(inst):
     change_hat(Hats.Dinosaur_Hat)
-    inst[APPLE_POS] = get_pos_x(), get_pos_y()
+    # apple at the bottom, length is already 2
+    inst[LENGTH] = 2
+    inst[APPLE_POS] = measure()
 
 def tend(inst):
     # cur_pos = get_pos_x(), get_pos_y()
