@@ -30,7 +30,7 @@ def decide_path(pos, apple_pos, size, snake_length):
         k = min(k, 1)
         w = 2 * k
         if ax >= w:
-            w = ax
+            w = ax + 1
             if w % 2 == 1:
                 w += 1
         return hamilton((min(w, L), h))
