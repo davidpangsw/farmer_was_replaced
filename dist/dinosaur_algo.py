@@ -19,7 +19,7 @@ def generate_snake_path(size):
 
 
 def decide_path(pos, apple_pos, size, snake_length):
-    return hamilton_2(size)
+    # return hamilton_2(size)
     ax, ay = apple_pos[0] - pos[0], apple_pos[1] - pos[1]
     l = snake_length
     w, h = size
