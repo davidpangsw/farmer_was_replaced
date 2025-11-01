@@ -42,5 +42,3 @@ def hamilton(L):
     path += left(L-1)
     path += down(L-1)
     return path
-
-HAMILTON = hamilton(get_world_size())
