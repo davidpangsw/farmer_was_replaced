@@ -20,24 +20,13 @@ def generate_snake_path(size):
 
 def decide_path(pos, apple_pos, size, snake_length):
     return hamilton_2(size)
-    L = get_world_size()
-    ax, ay = apple_pos[0] - pos[0], apple_pos[1] - pos[1] # note: can be negative
-    ax, ay = ax % L, ay % L
-    length = snake_length
+    ax, ay = apple_pos[0] - pos[0], apple_pos[1] - pos[1]
+    l = snake_length
+    w, h = size
+    k = ceildiv(l - ay, 2 * (h - 1))
 
-    height = L
-    width = ceildiv(length, height)
-    if width % 2 == 1:
-        width += 1
-
-    if ax > width:
-        # at (0, 0)
-        path = right(ax + 1 - width) # (ax + 1 - width, 0)
-        path += generate_snake_path((width, height)) # (ax + 1, 0)
-    else: # ax <= width
-        width = ax + 1
-        if width % 2 == 1:
-            width += 1
-        path = generate_snake_path((width, height))
-    return path
+    if ax % 2 == 0:
+        return hamilton((ax + 2*k, h))
+    else:
+        return hamilton((ax + 2*k +1, h))
     
