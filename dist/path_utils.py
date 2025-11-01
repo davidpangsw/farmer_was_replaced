@@ -22,21 +22,28 @@ def right(n):
 
 def snake(size):
     width, height = size
-    path = up(height - 1)
 
+    # (0, 0)
+    path = []
     for x in range(width // 2):
-        path += up(height - 1)
-        path += right(1)
-        path += down(height -1)
-        path += right(1)
+        # (x, 0)
+        path += up(height - 1) # (x, h-1)
+        path += right(1) # (x+1, h-1)
+        path += down(height -1) # (x+1, 0)
+        path += right(1) # (x+2, 0)
+    # (2(w // 2), 0)
 
     return path
 
-def hamilton(L):
+def hamilton(size):
     # (0, 0)
+    width, height = size
+    if width % 2 == 1:
+        quick_print("Warning: Cannot create hamilton cycle with odd width. Added one")
+        width += 1
     path = right(1) # (1, 0) 
-    path += snake((L - 2, L - 1)) # (L-1, 0)
-    path += up(L-1)
-    path += left(L-1)
-    path += down(L-1)
+    path += snake((width - 2, height - 1)) # (width-1, 0)
+    path += up(height-1) # (width-1, height-1)
+    path += left(width-1) # (0, height-1)
+    path += down(height-1) # (0, 0)
     return path
